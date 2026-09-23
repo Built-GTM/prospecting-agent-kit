@@ -96,4 +96,4 @@ Then you do a private test the way a rep would: post one prospect in a private c
 - **Dry run:** showing what would change without changing anything.
 
 ---
-*Built with the ship-an-agent process. Version 0.1, 2026-09-22.*
+*Built with the ship-an-agent process, included in this kit at `skills/ship-an-agent/`. Version 0.1.*

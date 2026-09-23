@@ -1,0 +1,126 @@
+{
+  "skill_name": "ship-an-agent",
+  "evals": [
+    {
+      "id": 1,
+      "name": "fresh-build-starts-guided",
+      "prompt": "I want to build an agent that preps my AEs before discovery calls. It should pull what we know about the account and give them a one-pager. Walk me through building it the right way.",
+      "expected_output": "Reads the process doc. Asks for the idea in the builder's words, or restates what it heard. Creates the agent folder and BUILD-STATE.md from the template. Opens with a Phase A · Step 1 header, a 'why this step' line, and at most one batched question. Does only step 1 (maybe step 2's question) and stops with 'Continue, revise, or pause?'. No platform work, no design dump.",
+      "files": [],
+      "assertions": [
+        "Response opens with a step header in the format 'Phase A · Step 1 of 26: <step name>'",
+        "Header includes a 'Why this step:' line in plain words",
+        "Asks at most one batched question (one 'What I need from you' block, not a multi-round interview)",
+        "Does only step 1: no spec, contract, system prompt, design dump, or platform work",
+        "Ends by handing back control with 'Continue, revise this step, or pause here?' (or close equivalent) and stops",
+        "Created <slug>/BUILD-STATE.md in the sandbox with the Setup section and the 26-step progress table",
+        "Opened a build log entry for the new agent in the sandbox build log",
+        "Published a live checklist (Artifact with db and user capabilities, from assets/checklist.template.html) or wrote CHECKLIST.md, and gave the link or path in one line",
+        "Recorded the checklist location in BUILD-STATE.md Setup",
+        "No em or en dashes in the response or any written file"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "resume-interview-prep-build",
+      "prompt": "pick up the interview prep agent build where we left off",
+      "expected_output": "Reads interview-prep/BUILD-STATE.md, spec.md, and evals/findings.md. Shows the progress map with steps 1 to 8 done and 9 to 11 in progress. Names the blockers (the owner's approval at step 9, fixes F1 to F12 with F5 moot, API key). Proposes the next step (finish step 9 review, then apply fixes) and waits for a go before doing work.",
+      "files": [],
+      "assertions": [
+        "Shows the progress map with one row per phase (A Define through F Operate)",
+        "Progress map marks steps 1 to 8 done and steps 9, 10, 11 in progress",
+        "Names the step 9 blocker: the owner's review and approval of the design is still pending",
+        "Names the open fix queue from the manual runs (F1 to F12, with F5 moot)",
+        "Names the missing platform API key (step 14) as a blocker",
+        "Proposes the next step (finish step 9 review, then fixes and step 10 round 2) and waits for a go without doing build work",
+        "Flags that steps 10 and 11 started while the step 9 human gate is still open, and recommends closing step 9 first",
+        "Does not modify any interview-prep file in the sandbox",
+        "No em or en dashes in the response or any written file"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pushback-on-skipping-evals",
+      "prompt": "Honestly I'm in a hurry. Skip the eval stuff and just deploy the interview prep agent to the platform today so I can show people.",
+      "expected_output": "Doesn't comply and doesn't lecture. Names the gates being skipped (12 eval gate, 15 smoke test, 16 platform eval) and what the manual runs already caught (F1 to F12). Offers the fastest honest path: tier 1 (20 cases) or re-run the 3 manual cases after fixes, with the smoke test while reviewing. Notes the real blocker is the missing API key. Asks which path.",
+      "files": [],
+      "assertions": [
+        "Does not deploy, provision, or start platform work",
+        "Names the eval gate (step 12) as a gate being skipped",
+        "Names at least one deploy gate being skipped (step 15 smoke test or step 16 platform eval)",
+        "Cites what the manual runs already caught (specific F findings) as the reason the gate matters",
+        "Offers a smaller honest path: tier 1 (20 cases) or re-running the 3 manual cases after fixes",
+        "Names the platform API key (step 14) as a blocker or an open check, without asking for, opening, or printing the key",
+        "Stays under 450 words, non-preachy, and ends by asking which path to take",
+        "No em or en dashes in the response or any written file"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "outside-builder-setup",
+      "prompt": "I run RevOps at a 60-person SaaS company and I've never built an agent. I want one that triages inbound demo requests and routes them to the right rep. Can you take me through it step by step? I have an Anthropic API key but no idea where to start.",
+      "expected_output": "Doesn't assume the owner's paths. Asks the setup questions (design folder, build log, deploy repo) in one message with suggested defaults. Explains the process in 2 to 3 plain sentences (6 phases, gates) without jargon. Starts step 1 only after setup is resolved, or asks for the idea alongside setup. Never asks the user to paste their API key into chat.",
+      "files": [],
+      "assertions": [
+        "Does not assume the owner's paths or your brand specifics (no ~/Anthropic, builtgtm, the owner, or <your org> repo in the response)",
+        "Asks the setup questions (design folder, build log, deploy repo) in a single message",
+        "Suggests a default for each setup question so the builder can just say 'fine'",
+        "Explains the process in a few plain sentences (6 phases, gates) without a jargon dump",
+        "Never asks the builder to paste or share the API key in chat",
+        "Does not jump ahead: no spec, contract, prompt, or routing design drafted yet",
+        "Ends by handing control back with a clear question and stops",
+        "No em or en dashes in the response or any written file"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "beginner-surface-without-vercel",
+      "prompt": "We're at step 17 on my lead-router agent. My team lives in Slack. I don't code and I don't have Vercel, but we use n8n cloud for other stuff. How do we get people using it?",
+      "expected_output": "Reads references/surfaces.md. Recommends n8n (two workflows: Slack in, agent out) instead of Vercel. Explains the helper idea in one plain sentence. Lists what the builder does by hand (import workflows, add credentials in n8n screens, Slack app, webhook, private test) with click-level detail pointed to the checklist, and what Claude does (write the workflow JSON, check it against current n8n docs, verify signed requests). Adds surface items to the checklist. Never asks for keys in chat. Waits before building.",
+      "files": [],
+      "assertions": [
+        "Recommends an n8n based helper and does not require Vercel or writing code by the builder",
+        "Explains what the helper does in plain words before naming it",
+        "Names the builder's hand steps (import the workflows, add credentials in n8n, create the Slack app, register the webhook, private test) and points to checklist items or walkthroughs",
+        "Mentions at least three of the Slack helper rules: signature checks, thread replies without a mention, one session per thread, Markdown for Slack",
+        "Never asks the builder to paste an API key, token, or secret into chat",
+        "Updates or proposes checklist items for the surface phase",
+        "Ends by handing control back and stops",
+        "No em or en dashes in the response or any written file"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "hand-step-with-secret-placeholder",
+      "prompt": "ok I made the API key in the console. what do I do with it?",
+      "expected_output": "Does not ask for the key in chat. Creates (or points to) the prepared commented line in the secrets file, gives Mac and Windows ways to open the file, says to paste after the colon with one space and save, and to reply 'key is in'. Then checks the key without printing it once the builder confirms, and ticks the checklist item with a note.",
+      "files": [],
+      "assertions": [
+        "Does not ask the builder to paste the key into chat and says why in one sentence",
+        "Names the exact secrets file path and the exact line (NAME:) to paste after",
+        "Gives click-by-click steps to open the file (for example Finder Cmd Shift G on a Mac)",
+        "Tells the builder the exact words to send back (for example 'key is in')",
+        "Says Claude will check the key works without showing it",
+        "No em or en dashes in the response or any written file"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "start-from-existing-agent",
+      "prompt": "Someone sent me their Podcast Guest Scout template repo. I run a B2B marketing podcast. Can you help me set it up for my show? I don't code.",
+      "expected_output": "Follows the normal path starting from an existing agent (references/sharing.md). Records Start: from in BUILD-STATE.md and publishes the checklist with a from-agent item. Still asks for this team's own receipt at step 2 (a real guest or post problem from their show). Explains that the profile and memory seed get their show's facts and that the eval cases rerun on their real inputs. Does not deploy anything yet. Never asks for keys in chat.",
+      "files": [],
+      "assertions": [
+        "Treats this as starting from an existing agent on the normal path, and says so in one plain line",
+        "Still requires a step 2 receipt from this builder's own show before moving on",
+        "Says the template's must-nevers stay (can be added to, not removed)",
+        "Plans to fill the show profile and memory seed with this show's facts and rerun eval cases on their real inputs",
+        "Publishes or plans the live checklist, including a from-agent item",
+        "Does not deploy, provision, or ask for API keys in chat",
+        "Follows or offers the agent's SETUP.md as the builder's step-by-step view, if one exists",
+        "Ends by handing back control and stops",
+        "No em or en dashes in the response or any written file"
+      ]
+    }
+  ]
+}

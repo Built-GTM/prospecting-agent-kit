@@ -67,6 +67,18 @@ That script checks the brief 34 ways against the contract: every claim carries a
 | `skills/build-context-pack/` | Turns your website into a first draft of your pack |
 | `skills/four-whys-research/` | How to research each Why: which sources to trust, how to check a person is still in the role, when to stop |
 | `evals/check_brief.py` | The contract checker, 34 rules |
+| `skills/ship-an-agent/` | **The whole 26 step process**, from idea to a live agent: the contract, the split, the eval gate, the deploy, the handover. This is the method behind everything above |
+
+## Building something other than a prospecting agent
+
+`skills/ship-an-agent/` is the process itself, and it is not specific to prospecting. It walks 26 steps in six phases, one at a time, running a gate out loud at each one and waiting for you before it moves.
+
+```
+Read skills/ship-an-agent/SKILL.md and walk me through building an agent
+that <the job you want done>.
+```
+
+It will ask where your files should live, make you write the contract before the prompt, force real test cases before you call it done, and refuse to let you skip the eval gate. That is the point. `references/process.md` inside it is the full 26 steps if you would rather read than be walked.
 
 ## The one idea worth stealing
 **Method in the agent, knowledge in the pack.** The prompt never mentions your company, so the day you change what you sell, or who you sell to, you edit six markdown files and nothing else. That is what lets one agent serve a whole team, and what stops you rebuilding it every quarter.

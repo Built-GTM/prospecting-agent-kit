@@ -1,0 +1,300 @@
+<title>{{CHECKLIST_TITLE}}</title>
+<!-- ship-an-agent live checklist. Claude fills CHECKLIST below, publishes with capabilities {db:{}, user:{}}, and ticks steps with write_db. See references/live-checklist.md. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F6F5EF; --surface:#FFFFFF; --ink:#101014; --mid:#5E5F6B; --line:#DEDDD4;
+  --cobalt:#2B5CE7; --cobalt-soft:#E4EAFB; --on-cobalt:#FFFFFF;
+  --doing:#B26B00; --doing-soft:#FBEFD9;
+  --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101014; --surface:#191A20; --ink:#F1F0EA; --mid:#A2A3AE; --line:#2C2D36;
+    --cobalt:#7F9DF3; --cobalt-soft:#1E2744; --on-cobalt:#0C0D12;
+    --doing:#F0B35A; --doing-soft:#33270F;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101014; --surface:#191A20; --ink:#F1F0EA; --mid:#A2A3AE; --line:#2C2D36;
+  --cobalt:#7F9DF3; --cobalt-soft:#1E2744; --on-cobalt:#0C0D12;
+  --doing:#F0B35A; --doing-soft:#33270F;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans);padding-inline:20px;padding-block:32px 80px}
+.wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+.label{font:500 12px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.09em;color:var(--cobalt)}
+h1{font-weight:800;font-size:clamp(34px,6vw,52px);line-height:1.02;letter-spacing:-.02em;margin:10px 0 12px;text-wrap:balance}
+h2{font-weight:700;font-size:26px;line-height:1.15;letter-spacing:-.01em;margin:6px 0 4px;text-wrap:balance}
+p{margin:0}
+.lede{color:var(--mid);max-width:60ch}
+.sync{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:400 12px var(--mono);color:var(--mid)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mid)}
+.dot.live{background:var(--cobalt);box-shadow:0 0 0 3px var(--cobalt-soft)}
+
+/* ruler: one tick per step */
+.ruler{display:flex;flex-direction:column;gap:10px}
+.ticks{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:3px;height:22px}
+.tick{background:var(--line);border-radius:2px}
+.tick.done{background:var(--cobalt)}
+.tick.doing{background:var(--doing)}
+.tick.gap{background:transparent;border-left:1px dashed var(--mid);border-radius:0;margin-inline:2px}
+.ruler-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font:400 13px var(--mono);color:var(--mid);font-variant-numeric:tabular-nums}
+.ruler-row b{color:var(--ink);font-weight:600}
+
+/* next move */
+.next{background:var(--cobalt);color:var(--on-cobalt);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:10px}
+.next .label{color:var(--on-cobalt);opacity:.8}
+.next h3{margin:0;font-size:22px;font-weight:700;line-height:1.2;text-wrap:balance}
+.next p{opacity:.92;max-width:62ch}
+.next button{align-self:flex-start;font:500 14px var(--sans);background:var(--on-cobalt);color:var(--cobalt);border:0;border-radius:8px;padding:9px 14px;cursor:pointer}
+.next button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chipbtn{font:500 13px var(--sans);color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chipbtn:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+
+section.phase{display:flex;flex-direction:column;gap:14px}
+.phase-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:10px}
+.phase-head .why{color:var(--mid);max-width:60ch;font-size:15px}
+.count{font:500 13px var(--mono);color:var(--mid);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+ol.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+li.step{border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:start;padding:14px 0}
+.check{width:28px;height:28px;border:2px solid var(--ink);border-radius:7px;background:var(--surface);display:grid;place-items:center;cursor:pointer;padding:0;margin-top:1px}
+.check svg{width:16px;height:16px;opacity:0}
+.check:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.step.done .check{background:var(--cobalt);border-color:var(--cobalt)}
+.step.done .check svg{opacity:1}
+.step.doing .check{border-color:var(--doing);background:var(--doing-soft)}
+.check[disabled]{cursor:default}
+.title{background:none;border:0;padding:0;text-align:left;color:inherit;font:500 17px/1.35 var(--sans);cursor:pointer;display:flex;flex-direction:column;gap:6px;width:100%}
+.title:focus-visible{outline:2px solid var(--cobalt);outline-offset:4px;border-radius:4px}
+.step.done .title .t{color:var(--mid);text-decoration:line-through;text-decoration-color:var(--line);text-decoration-thickness:2px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.who{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:5px;border:1px solid var(--line);color:var(--mid)}
+.who.you{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.who.claude{color:var(--cobalt);border-color:var(--cobalt)}
+.who.together{border-style:dashed;color:var(--ink)}
+.mins{font:400 12px var(--mono);color:var(--mid)}
+.state{font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:5px 8px;border-radius:5px;background:var(--doing-soft);color:var(--doing)}
+.caret{font:400 14px var(--mono);color:var(--mid);padding-top:4px;transition:transform .15s}
+.step.open .caret{transform:rotate(90deg)}
+.detail{padding:0 0 18px 48px;display:none;flex-direction:column;gap:12px}
+.step.open .detail{display:flex}
+.detail ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:64ch}
+.detail code{font:400 13.5px var(--mono);background:var(--cobalt-soft);padding:1px 5px;border-radius:4px;word-break:break-all}
+.knows{border-left:3px solid var(--cobalt);padding:6px 0 6px 12px;max-width:62ch}
+.knows .label{display:block;margin-bottom:2px}
+.note{font:400 13px/1.5 var(--mono);color:var(--mid)}
+.note b{color:var(--ink);font-weight:500}
+.say{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font:400 14px var(--mono);max-width:62ch}
+
+/* questions */
+.decide{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:16px;max-width:680px}
+.q{display:flex;flex-direction:column;gap:8px;border:0;margin:0;padding:0}
+.q legend,.q label.ql{font:500 15px var(--sans);padding:0;margin-bottom:6px}
+.q .hint{font-size:13px;color:var(--mid)}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opt span{display:inline-block;font:400 14px var(--sans);border:1px solid var(--line);border-radius:8px;padding:7px 12px}
+.opt input:checked + span{background:var(--cobalt);color:var(--on-cobalt);border-color:var(--cobalt)}
+.opt input:focus-visible + span{outline:2px solid var(--cobalt);outline-offset:2px}
+.q input[type=text],.q textarea{font:400 15px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 11px;width:100%}
+.q textarea{min-height:70px;resize:vertical}
+.q input[type=text]:focus-visible,.q textarea:focus-visible{outline:2px solid var(--cobalt);outline-offset:1px}
+.saved{font:400 12px var(--mono);color:var(--mid);min-height:1em}
+.banner{font:400 13px var(--mono);color:var(--doing);background:var(--doing-soft);border-radius:8px;padding:10px 12px}
+@media (max-width:520px){ .detail{padding-left:0} .row{gap:10px} }
+@media (prefers-reduced-motion: reduce){ .caret{transition:none} }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="label" id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <p class="lede" id="lede"></p>
+    <div class="sync"><span class="dot" id="dot"></span><span id="synctext">Connecting…</span></div>
+  </header>
+
+  <div class="ruler" aria-label="Progress">
+    <div class="ticks" id="ticks"></div>
+    <div class="ruler-row"><span><b id="donecount">0</b> of <span id="total">0</span> steps done</span><span id="youleft"></span></div>
+  </div>
+
+  <div class="next" id="next" aria-live="polite"></div>
+
+  <div class="filters" role="group" aria-label="Show steps for">
+    <button class="chipbtn" id="f-all" aria-pressed="true">Everything</button>
+    <button class="chipbtn" id="f-you" aria-pressed="false">Just my steps</button>
+    <button class="chipbtn" id="f-open" aria-pressed="false">Hide finished</button>
+  </div>
+
+  <div id="banner" hidden></div>
+  <div id="phases" style="display:flex;flex-direction:column;gap:48px"></div>
+</div>
+
+<script>
+/* ===== Claude fills this block. Everything below it is generic. =====
+   phases: [{id, label, title, why, done?: true}]      done:true = an "Already done" group, not counted in progress
+   steps:  [{id, phase, who: "you"|"claude"|"together", t, min?, why?, steps: [html strings], say?, knows?, questions?}]
+   questions (optional, on a "you" step): [{id, q, hint?, opts?: [..]} | {id, q, text: true, placeholder} | {id, q, textarea: true, placeholder}]
+   Answers save to db doc decisions/<step id>. Step state lives in db doc steps/<step id>: {state: todo|doing|done, by: you|claude, at, note}. */
+const CHECKLIST = {
+  eyebrow: "{{AGENT_NAME}} · build checklist",
+  title: "{{CHECKLIST_TITLE}}",
+  lede: "Every step from idea to a live agent. Tap a box when you finish a step. Claude ticks its own boxes from the session, so this page is always the current picture.",
+  doneLine: "{{AGENT_NAME}} is live.",
+  phases: /*PHASES*/[],
+  steps: /*STEPS*/[]
+};
+/* ===== end of the block Claude fills ===== */
+
+const PHASES = CHECKLIST.phases, STEPS = CHECKLIST.steps;
+const DONE_PHASES = new Set(PHASES.filter(p => p.done).map(p => p.id));
+const WHO = {you:"You", claude:"Claude", together:"Together"};
+const CHECK = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" stroke="var(--on-cobalt)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+
+let status = {}, decisions = {}, db = null, canWrite = true, filter = "all";
+const open = new Set();
+const $ = (id) => document.getElementById(id);
+const stateOf = (s) => (status[s.id]?.state) || (DONE_PHASES.has(s.phase) && !db ? "done" : "todo");
+const escapeHtml = (t) => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const when = (iso) => iso ? new Date(iso).toLocaleString([], {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"}) : "";
+const typing = () => document.activeElement?.closest?.(".decide");
+
+$("eyebrow").textContent = CHECKLIST.eyebrow; $("title").textContent = CHECKLIST.title; $("lede").textContent = CHECKLIST.lede;
+
+function render(){
+  const work = STEPS.filter(s => !DONE_PHASES.has(s.phase));
+  const done = work.filter(s => stateOf(s) === "done").length;
+  $("donecount").textContent = done; $("total").textContent = work.length;
+  const yours = work.filter(s => s.who !== "claude" && stateOf(s) !== "done");
+  $("youleft").textContent = yours.length ? `${yours.length} left with you in it · about ${yours.reduce((a,s)=>a+(s.min||0),0)} min` : "Nothing left for you";
+
+  const ticks = [];
+  PHASES.filter(p => !p.done).forEach((p,i) => {
+    if(i) ticks.push('<div class="tick gap"></div>');
+    work.filter(s=>s.phase===p.id).forEach(s => ticks.push(`<div class="tick ${stateOf(s)}" title="${escapeHtml(s.t)}"></div>`));
+  });
+  $("ticks").innerHTML = ticks.join("");
+
+  const nextStep = work.find(s => stateOf(s) !== "done");
+  const nx = $("next");
+  if(!nextStep){ nx.innerHTML = `<div class="label">All done</div><h3>${escapeHtml(CHECKLIST.doneLine)}</h3>`; }
+  else {
+    const whoLine = nextStep.who === "claude"
+      ? (stateOf(nextStep)==="doing" ? "Claude is working on this now. You can wait." : "This one is Claude's. If Claude hasn't started, tell it to go.")
+      : nextStep.who === "together" ? "Do this one with Claude." : "This one is yours.";
+    nx.innerHTML = `<div class="label">Your next move · ${WHO[nextStep.who]}${nextStep.min?` · ${nextStep.min} min`:""}</div><h3>${escapeHtml(nextStep.t)}</h3><p>${whoLine}</p><button type="button" id="jump">Show me how</button>`;
+    $("jump").onclick = () => { open.add(nextStep.id); filter="all"; syncFilters(); render(); $("s-"+nextStep.id)?.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? "auto" : "smooth", block:"start"}); };
+  }
+
+  $("phases").innerHTML = PHASES.map(ph => {
+    let list = STEPS.filter(s => s.phase === ph.id);
+    const n = list.length, d = list.filter(s=>stateOf(s)==="done").length;
+    if(filter==="you") list = list.filter(s => s.who !== "claude");
+    if(filter==="open") list = list.filter(s => stateOf(s) !== "done");
+    if(!list.length) return "";
+    return `<section class="phase" aria-labelledby="h-${ph.id}">
+      <div class="phase-head"><div><div class="label">${escapeHtml(ph.label)}</div><h2 id="h-${ph.id}">${escapeHtml(ph.title)}</h2><p class="why">${escapeHtml(ph.why||"")}</p></div><div class="count">${d} / ${n}</div></div>
+      <ol class="steps">${list.map(stepHtml).join("")}</ol></section>`;
+  }).join("");
+  bind();
+}
+
+function stepHtml(s){
+  const st = stateOf(s), rec = status[s.id] || {}, isOpen = open.has(s.id);
+  const stamp = st==="done" && rec.at ? `<div class="note">Checked off by <b>${rec.by==="claude"?"Claude":"you"}</b> · ${when(rec.at)}</div>` : "";
+  const note = rec.note ? `<div class="note">Claude's note: <b>${escapeHtml(rec.note)}</b></div>` : "";
+  return `<li class="step ${st}${isOpen?" open":""}" id="s-${s.id}">
+    <div class="row">
+      <button class="check" type="button" data-toggle="${s.id}" aria-label="${st==="done"?"Mark not done":"Mark done"}: ${escapeHtml(s.t)}" aria-pressed="${st==="done"}" ${(!db||!canWrite)?"disabled":""}>${CHECK}</button>
+      <button class="title" type="button" data-open="${s.id}" aria-expanded="${isOpen}" aria-controls="d-${s.id}">
+        <span class="t">${escapeHtml(s.t)}</span>
+        <span class="meta"><span class="who ${s.who}">${WHO[s.who]}</span>${s.min?`<span class="mins">${s.min} min</span>`:""}${st==="doing"?'<span class="state">In progress</span>':""}</span>
+      </button>
+      <span class="caret" aria-hidden="true">›</span>
+    </div>
+    <div class="detail" id="d-${s.id}">
+      ${s.why?`<p class="lede">${s.why}</p>`:""}
+      <ol>${(s.steps||[]).map(x=>`<li>${x}</li>`).join("")}</ol>
+      ${s.say?`<div class="say">${escapeHtml(s.say)}</div>`:""}
+      ${s.questions?questionsHtml(s):""}
+      ${s.knows?`<div class="knows"><span class="label">You'll know it worked when</span>${s.knows}</div>`:""}
+      ${note}${stamp}
+    </div>
+  </li>`;
+}
+
+function questionsHtml(step){
+  const dis = (!db||!canWrite) ? "disabled" : "", ans = decisions[step.id] || {};
+  return `<form class="decide" data-step="${step.id}" onsubmit="return false">
+    ${step.questions.map(q => {
+      const fid = `q-${step.id}-${q.id}`;
+      if(q.text || q.textarea){
+        const v = escapeHtml(ans[q.id]||""), ph = escapeHtml(q.placeholder||"");
+        const field = q.text ? `<input type="text" id="${fid}" data-q="${q.id}" value="${v}" placeholder="${ph}" ${dis}>` : `<textarea id="${fid}" data-q="${q.id}" placeholder="${ph}" ${dis}>${v}</textarea>`;
+        return `<div class="q"><label class="ql" for="${fid}">${escapeHtml(q.q)}</label>${field}</div>`;
+      }
+      return `<fieldset class="q"><legend>${escapeHtml(q.q)}</legend>${q.hint?`<div class="hint">${escapeHtml(q.hint)}</div>`:""}<div class="opts">${(q.opts||[]).map((o,i)=>`<label class="opt"><input type="radio" id="${fid}-${i}" name="${fid}" data-q="${q.id}" value="${escapeHtml(o)}" ${ans[q.id]===o?"checked":""} ${dis}><span>${escapeHtml(o)}</span></label>`).join("")}</div></fieldset>`;
+    }).join("")}
+    <div class="saved" aria-live="polite"></div>
+  </form>`;
+}
+
+function bind(){
+  document.querySelectorAll("[data-open]").forEach(b => b.onclick = () => { const id=b.dataset.open; open.has(id)?open.delete(id):open.add(id); render(); });
+  document.querySelectorAll("[data-toggle]").forEach(b => b.onclick = () => toggle(b.dataset.toggle));
+  document.querySelectorAll(".decide").forEach(form => {
+    const stepId = form.dataset.step;
+    form.querySelectorAll("input[type=radio]").forEach(r => r.onchange = () => saveAnswer(form, stepId, r.dataset.q, r.value));
+    form.querySelectorAll("input[type=text], textarea").forEach(t => { let timer; t.oninput = () => { clearTimeout(timer); timer = setTimeout(()=>saveAnswer(form, stepId, t.dataset.q, t.value.trim()), 700); }; });
+  });
+}
+
+async function toggle(id){
+  if(!db || !canWrite) return;
+  const body = {state: status[id]?.state === "done" ? "todo" : "done", by:"you", at:new Date().toISOString(), note: status[id]?.note || ""};
+  status[id] = body; render();
+  try { await db.doc("steps/"+id).set(body); }
+  catch(e){ if(e?.code==="invalid_argument"){ canWrite=false; showBanner("This page is read only for you. Claude can still update it."); render(); } }
+}
+
+let saving = Promise.resolve();
+function saveAnswer(form, stepId, q, v){
+  if(!db || !canWrite || (decisions[stepId]||{})[q] === v) return;
+  decisions[stepId] = {...(decisions[stepId]||{}), [q]: v, updatedAt: new Date().toISOString()};
+  const body = {...decisions[stepId]}, out = form.querySelector(".saved");
+  saving = saving.then(() => db.doc("decisions/"+stepId).set(body))
+    .then(() => { if(out) out.textContent = "Saved. Claude can read these."; })
+    .catch(() => { if(out) out.textContent = "Didn't save. Try again in a moment."; });
+}
+
+function showBanner(msg){ const b=$("banner"); b.className="banner"; b.textContent=msg; b.hidden=false; }
+function syncFilters(){ ["all","you","open"].forEach(f => $("f-"+f).setAttribute("aria-pressed", String(filter===f))); }
+["all","you","open"].forEach(f => $("f-"+f).onclick = () => { filter=f; syncFilters(); render(); });
+
+render();
+
+(async () => {
+  try { db = await window.claude?.use?.("db"); } catch { db = null; }
+  if(!db){ $("synctext").textContent = "Not syncing in this view. Showing the plan only."; render(); return; }
+  $("dot").classList.add("live"); $("synctext").textContent = "Live. Changes from you and Claude show up here.";
+  try { const user = await window.claude.use("user"); const w = user?.can ? await user.can("data.write") : null; if(w===false) canWrite=false; } catch {}
+  db.collection("steps").onSnapshot(snap => {
+    const next = {}; snap.docs.forEach(d => { if(d.exists) next[d.id] = d.data(); });
+    status = next; if(!typing()) render();
+  }, () => { $("dot").classList.remove("live"); $("synctext").textContent = "Lost the live connection. Reload the page."; });
+  db.collection("decisions").onSnapshot(snap => {
+    const next = {}; snap.docs.forEach(d => { if(d.exists) next[d.id] = {...d.data()}; });
+    decisions = next; if(!typing()) render();
+  }, () => {});
+})();
+</script>
