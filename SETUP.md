@@ -29,7 +29,7 @@ A live checklist page tracks every step. Claude creates it in the first few minu
 ## Step 1: Get the files and start Claude (10 minutes)
 1. Download this agent's folder. On the GitHub page, click the green **Code** button, then **Download ZIP**, then unzip it into your Documents folder.
 2. Open the Claude desktop app, choose **Code**, and open that folder.
-3. Type: **"Set up this agent for my team using the ship-an-agent skill."** You don't install anything. The folder already includes the skills Claude needs to walk you through the build, and the skills the agent itself uses (in `skills/`).
+3. Type: **"Read README.md and SETUP.md, then help me build this agent for my company: <your website>."** You don't install anything. The folder includes the two skills the agent itself uses (in `skills/`): one that drafts your context pack from your website, and one that runs the research method.
 4. Claude asks where to keep your notes and gives you a checklist link. Open it and keep it in a browser tab.
 
 ## Step 2: Build your context pack (30 to 60 minutes, mostly talking)

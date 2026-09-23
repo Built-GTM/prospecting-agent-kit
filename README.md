@@ -1,28 +1,80 @@
 # Prospecting agent kit
 
-Everything you need to build the research agent from the show, for your own company.
+Build the research agent from the show, for your own company.
 
-The agent takes a company URL and one LinkedIn profile, and hands back why that person should care right now: a verdict, the Because, the 4 Whys with sources, and what it could not verify. It does the homework. The rep still does the prospecting. It never writes the email.
+Give it a company URL and one LinkedIn profile. It hands back why that person should care right now: a verdict, the Because, the 4 Whys with their sources, and what it could not verify. It does the homework. You still do the prospecting. It never writes the email.
 
-## Start here
-1. `SETUP.md`. Written for someone who does not code.
-2. `context-pack-template/`. The six files you fill in for your own company. This is the only part that is about you.
-3. `skills/build-context-pack/SKILL.md`. Point this at your own website and it drafts those six files for you, then asks you five questions to close the gaps.
+---
+
+## Start in 10 minutes
+
+### 1. Get the files
+**No GitHub account needed.** Click the green **Code** button at the top of this page, then **Download ZIP**, then unzip it into your Documents folder.
+
+Or, if you use git:
+```
+git clone https://github.com/Built-GTM/prospecting-agent-kit.git
+```
+
+### 2. Open it with Claude
+Open the Claude desktop app, choose **Code**, and open that folder. You do not install anything and you do not need to know how to code.
+
+### 3. Paste this, with your own website in it
+```
+Read README.md and SETUP.md in this folder.
+
+I want to build the prospecting research agent for my company: <your website>
+
+Start by following skills/build-context-pack/SKILL.md: read my site and draft
+my six context pack files into a new folder called my-pack/. Mark every field
+as found with a source, or inferred. Then ask me the five owner questions.
+```
+
+Claude reads your website and drafts your pack. It marks what it found with a link and what it guessed, so you can see the difference. Then it asks you five questions only you can answer.
+
+### 4. Fill in the gaps
+Answer the five questions. They take about twenty minutes and they are the difference between a brief that sounds like you and one that sounds like everyone else:
+- Your three best customers, and why they bought
+- Who you never win, and why
+- What each buyer is measured on
+- What customers say before they buy
+- Which customers you are allowed to name
+
+### 5. Run your first brief
+```
+Using system-prompt.md as your instructions and my-pack/ as the context pack,
+research this prospect:
+Company: <a company URL>
+Person: <their LinkedIn profile URL>
+```
+
+Then score it:
+```
+python3 evals/check_brief.py <the file you saved the brief in>
+```
+
+That script checks the brief 34 ways against the contract: every claim carries a link, the person was verified or flagged, no invented customers, no outreach copy, within the word caps. It has no opinion about your work.
+
+---
 
 ## What is in the box
 | Folder | What it is |
 |---|---|
-| `system-prompt.md` | The agent's instructions. Method only, no company facts, so it works for any company |
-| `skills/four-whys-research/` | How to research each Why: which sources to trust, how to check a person is still in the role, when to stop |
-| `skills/build-context-pack/` | Setup time. Turns your website into a first draft of your pack |
+| `SETUP.md` | The full walkthrough, written for someone who does not code |
 | `context-pack-template/` | The six blank files: company, icp, personas, problems, signals, proof |
-| `example-pack/` | A finished pack for ServiceTitan, built entirely from their public pages. Read this to see what good looks like |
-| `evals/check_brief.py` | The contract checker. Run it on a brief and it scores it 34 ways |
+| `example-pack/` | A finished pack for a real company, built entirely from public pages. Read this first to see what good looks like |
+| `system-prompt.md` | The agent's instructions. Method only, no company facts, so it works for any company |
+| `skills/build-context-pack/` | Turns your website into a first draft of your pack |
+| `skills/four-whys-research/` | How to research each Why: which sources to trust, how to check a person is still in the role, when to stop |
+| `evals/check_brief.py` | The contract checker, 34 rules |
 
 ## The one idea worth stealing
-Method in the agent, knowledge in the pack. The prompt never mentions your company, so the day you change what you sell, or who you sell to, you edit six markdown files and nothing else. That is what lets one agent serve a whole team, and what stops you rebuilding it every quarter.
+**Method in the agent, knowledge in the pack.** The prompt never mentions your company, so the day you change what you sell, or who you sell to, you edit six markdown files and nothing else. That is what lets one agent serve a whole team, and what stops you rebuilding it every quarter.
 
-## What is not in here
-The research lookup script points at a paid data route that needs its own credential, so it is left out. The agent works without it on web search and page reading alone.
+## Two things deliberately left out
+**The research lookup script.** It points at a paid data route that needs its own credential. The agent works without it, on web search and page reading alone.
 
-The eval case set is not included either. It names real people at real companies who never agreed to be examples. Build your own from the shape in `check_brief.py`: some easy accounts, some messy ones, some edge cases, a couple of deliberate attacks, and one where the right answer is to refuse.
+**The eval case set.** It named real people at real companies who never agreed to be examples. Build your own instead: a few easy accounts, a few messy ones, some edge cases, a couple of deliberate attacks, and one where the right answer is to refuse. `check_brief.py` shows you the shape.
+
+## Where it came from
+Built live on Build Better, a Sell Better production, 23 September 2026. Almost none of the thinking is original: the signal types, the one level deeper check, the persona lens and the prompt structure all came from guests on the Daily Sales Show. The credits are in the deck.
