@@ -28,7 +28,7 @@ A live checklist page tracks every step. Claude creates it in the first few minu
 
 ## Step 1: Get the files and start Claude (10 minutes)
 1. Download this agent's folder. On the GitHub page, click the green **Code** button, then **Download ZIP**, then unzip it into your Documents folder.
-2. Open the Claude desktop app, choose **Code**, and open that folder.
+2. Open that folder with whichever coding agent you use: Claude Code (desktop app, choose **Code**), Codex, Cursor, Windsurf, or a terminal agent. The kit is markdown plus one Python script, so nothing here is tied to one vendor. If your tool cannot open a local folder, see "Using this without file access" in `README.md`.
 3. Type: **"Read README.md and SETUP.md, then help me build this agent for my company: <your website>."** You don't install anything. The folder includes the two skills the agent itself uses (in `skills/`): one that drafts your context pack from your website, and one that runs the research method.
 4. Claude asks where to keep your notes and gives you a checklist link. Open it and keep it in a browser tab.
 
