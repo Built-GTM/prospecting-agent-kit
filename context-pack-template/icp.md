@@ -1,46 +1,21 @@
 # ICP: which companies are a fit
 
-*Feeds Why them. Firmographics are the filter, not the definition: your ICP is the problems and the state your best customers were in. Base every answer on your 5 to 10 best customers (highest LTV, fastest ROI, expanded most), not on who you wish bought.*
-
-*Confidence: High = true of most best customers. Medium = true of some. Low = a guess we're testing. The agent treats Low as "check, don't conclude."*
+## What the named customers have in common (lookalike evidence)
+[Look at the customers on your own website and write down what they share: size, model, geography, how they buy. This is evidence, not opinion, and it is usually the section that corrects the biggest wrong guess, which is how big your customers really are.]
 
 ## Company characteristics
-| Characteristic | Our answer | Confidence | Why it matters |
-|---|---|---|---|
-| Company size (employees) | [ ] | [ ] | [ ] |
-| Revenue range | [ ] | [ ] | [ ] |
-| Primary industry | [ ] | [ ] | [ ] |
-| Secondary industries | [ ] | [ ] | [ ] |
-| Geography | [ ] | [ ] | [ ] |
-| Growth stage | [ ] | [ ] | [ ] |
-| Size of the team we serve | [ ] | [ ] | [ ] |
-| Tech stack, must have | [ ] | [ ] | [ ] |
-| Tech stack, nice to have | [ ] | [ ] | [ ] |
-| Sales motion | [ ] | [ ] | [ ] |
+| Attribute | Fit | Not a fit |
+|---|---|---|
+| Size | [employees or revenue] | [too small, too big] |
+| Model | [how they make money] | [models you cannot serve] |
+| Geography | [where] | [where not] |
+| Maturity | [what they must already have] | [too early, too late] |
 
 ## The state they're in when they buy
-*What just changed that made the old way stop working. What tools and processes they're running. This matters more than the table above.*
-- [ ]
+[What is true about a company the month before it signs. Growing, merging, replacing something, under new leadership.]
 
-## Disqualifiers: who we don't target
-*Any one of these means the brief says "don't reach out" and why. Be specific: a number, a name, a tool.*
-| Disqualifier | Threshold or example |
-|---|---|
-| Too small | [ ] |
-| Too large | [ ] |
-| Wrong industry | [ ] |
-| Wrong tech stack | [ ] |
-| Wrong stage | [ ] |
-| Other (why deals don't close, who churns fast) | [ ] |
+## Disqualifiers
+[The hard nos. Be blunt. Every one of these saves a rep an hour. The agent reads these before anything else and will return SKIP on a match.]
 
-## Scoring model (100 points)
-*Optional at level 1. If filled, the agent reports a score only from facts it found, and says which categories it couldn't check.*
-| Category | Max points | Thresholds |
-|---|---|---|
-| Company size | 20 | [ ] *e.g. 50 to 300 = 20, 30 to 50 = 15* |
-| Industry match | 25 | [ ] *e.g. primary = 25, secondary = 15* |
-| Growth stage | 20 | [ ] |
-| Tech stack fit | 15 | [ ] *e.g. both must haves = 15, one = 10, none = 0* |
-| Geography | 10 | [ ] |
-| Team size | 10 | [ ] |
-| **Total** | **100** | Minimum to pursue: [ ] |
+## Low confidence, check rather than conclude
+[Cases where the public web is genuinely ambiguous and the honest answer is "ask the rep". Franchises, holding companies, recent acquisitions, anything where the website belongs to a parent. Telling the agent where to hedge is what stops it inventing certainty.]

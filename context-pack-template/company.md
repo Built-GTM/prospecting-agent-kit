@@ -1,28 +1,34 @@
-# Company
-
-*Who "us" is. The agent reads this first on every run. Keep it short: a rep should be able to say it out loud in 20 seconds.*
+# Company: [your company]
 
 ## One line
-[ ] *What you do, for whom, in one sentence. Example: "We tell AEs which 5 deals to work today and why."*
+[What you sell, in one sentence a customer would recognise.]
+
+## Our own domains, for the customer check
+A prospect's site that loads any of these is already running you. The agent stops and says so instead of pitching. **This is the highest value section in the pack.** Without it the agent will happily write a brief for an existing customer.
+
+| Domain | Where it shows up | Evidence |
+|---|---|---|
+| `[app.yourproduct.com]` | [the widget or portal on a customer's own site] | [found live on <url>, <date>] |
+| `[*.youtenant.com]` | [the customer's own tenant login] | [found live on <url>, <date>] |
+
+**How to find yours:** open two or three customers' websites and look at what loads. Booking widgets, pay links, portals and login subdomains are the usual tells. Then note the pattern so the agent can search for it directly.
+
+| Softer evidence | Where it shows up | What it means |
+|---|---|---|
+| [a job post asking for experience with your product] | [their careers page] | Not a stop. Verdict is CHECK FIRST, confirm in the CRM. |
 
 ## What we sell
-- Product or offering: [ ]
-- Who uses it day to day: [ ]
-- Who buys it: [ ]
-- Typical deal size: [ ]
-- Sales motion: [ ] *sales-led, sales-assisted, or self-serve*
+[The products or modules, named the way you name them.]
 
 ## The problems we solve
-*One line each, linking to the problem file. These are the only problems the agent may name.*
-1. [ ] (`problems/<name>.md`)
-2. [ ] (`problems/<name>.md`)
-3. [ ] (`problems/<name>.md`)
+[Three to five, in plain words. Each one should match a file in `problems/`.]
 
 ## What they do instead of buying us
-*The status quo and the named alternatives. The agent uses this to guess their likely world.*
-- Status quo (doing nothing, spreadsheets, a manager's head): [ ]
-- Competitors: [ ]
+[Spreadsheets, a competitor, an in-house build, nothing at all.]
+
+## Their own value claims
+[Numbers and claims from your own marketing that a rep is allowed to repeat. Mark anything you cannot substantiate, because the agent will not use it.]
 
 ## Words
-- Say: [ ] *the phrases your best customers use*
-- Don't say: [ ] *internal jargon, retired names, claims legal won't let you make*
+**Say:** [the words your customers use]
+**Don't say:** [jargon, internal names, anything legal will not sign off]

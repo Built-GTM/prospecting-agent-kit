@@ -1,50 +1,24 @@
 # Persona: [role name]
 
-*Feeds Why you. One file per role, usually 2 or 3: the economic buyer, the technical buyer, and the user or champion. Psychographics over demographics: what they're measured on and afraid of matters more than their age.*
+One file per buyer. Four is plenty. The agent reads exactly one of these per brief, so make each one stand alone.
 
-## Who matches this persona
-- Titles: [ ] *every title that counts, e.g. VP Sales, CRO, Head of Sales*
-- Org level: [ ]
-- Reports to: [ ]
-- Team size they run: [ ]
-- Typical background: [ ]
-- Typical tenure in role: [ ]
+## Titles that match
+[The literal job titles you see on LinkedIn. Include the messy ones.]
 
-## Their role in the deal
-- Buying role: [ ] *economic buyer, technical buyer, champion, user, veto*
-- Budget authority: [ ]
-- Owns a P&L: [ ]
-- Must involve: [ ] *who else has to say yes, and above what amount*
-- Decision criteria: [ ]
+## Who they are
+[Two lines. Where they sit, how big their world is, who they answer to.]
 
-## What they're measured on
-| Metric | Success looks like | Failure looks like |
-|---|---|---|
-| [ ] | [ ] | [ ] |
-| [ ] | [ ] | [ ] |
-| [ ] | [ ] | [ ] |
+## Measured on
+[The two or three numbers their boss asks about. This is what the brief speaks to.]
 
-## A day in their life, and where it hurts
-| When | What they're doing | Where it hurts |
-|---|---|---|
-| [ ] | [ ] | [ ] |
-| [ ] | [ ] | [ ] |
+## Biggest fear
+[The thing that keeps them up. The agent uses this to pick the angle, so be specific and unflattering.]
 
-## What drives them
-- Primary motivation: [ ]
-- Biggest fear: [ ]
-- Care about: [ ]
-- Don't care about: [ ] *the agent keeps these out of the angle*
-- Where they learn: [ ]
-- How they buy: [ ]
-- Usual objections: [ ]
-- Proof they need: [ ]
-
-## Seniority
-*The higher the title, the wider the focus. How the lens shifts up or down a level.*
-- One level up (e.g. the CRO above a VP): [ ]
-- One level down (e.g. a director or manager): [ ]
+## What they don't care about
+[Just as important. It stops the agent pitching the wrong altitude, for example a technical feature to an owner who only wants the phone answered.]
 
 ## Problems this persona feels most
-*Link to problem files. The agent picks from these.*
-- [ ] (`problems/<name>.md`)
+[Name the files in `problems/` this persona owns. Two or three.]
+
+## How to talk to them
+[Register and vocabulary. Do they want numbers, stories, or speed? One or two lines.]

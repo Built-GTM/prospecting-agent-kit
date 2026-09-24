@@ -16,8 +16,18 @@ Or, if you use git:
 git clone https://github.com/Built-GTM/prospecting-agent-kit.git
 ```
 
-### 2. Open it with Claude
-Open the Claude desktop app, choose **Code**, and open that folder. You do not install anything and you do not need to know how to code.
+### 2. Open it with a coding agent
+Open that folder with whichever agent you already use. You do not install anything and you do not need to know how to code.
+
+| You use | How to open it |
+|---|---|
+| Claude Code | Open the desktop app, choose **Code**, open the folder |
+| Codex | Open the folder as a workspace. It reads `AGENTS.md` at the root on its own |
+| Cursor or Windsurf | **File, Open Folder**, then use the chat pane |
+| Gemini CLI, or any terminal agent | `cd` into the folder and start it there |
+| A chat window with no file access (Grok, ChatGPT, Claude.ai) | See **Using this without file access** below |
+
+Everything in this kit is markdown plus one Python script. Nothing here is specific to one vendor.
 
 ### 3. Paste this, with your own website in it
 ```
@@ -30,7 +40,7 @@ my six context pack files into a new folder called my-pack/. Mark every field
 as found with a source, or inferred. Then ask me the five owner questions.
 ```
 
-Claude reads your website and drafts your pack. It marks what it found with a link and what it guessed, so you can see the difference. Then it asks you five questions only you can answer.
+The agent reads your website and drafts your pack. It marks what it found with a link and what it guessed, so you can see the difference. Then it asks you five questions only you can answer.
 
 ### 4. Fill in the gaps
 Answer the five questions. They take about twenty minutes and they are the difference between a brief that sounds like you and one that sounds like everyone else:
@@ -79,6 +89,35 @@ that <the job you want done>.
 ```
 
 It will ask where your files should live, make you write the contract before the prompt, force real test cases before you call it done, and refuse to let you skip the eval gate. That is the point. `references/process.md` inside it is the full 26 steps if you would rather read than be walked.
+
+## Using this with Codex, Grok, Cursor or anything else
+
+**The kit is already tool agnostic.** Six markdown files, one system prompt, three skill files and a Python script. There is no vendor lock in the content. Only the wording of the old instructions assumed one app, and that is now fixed.
+
+### What is portable, and what is not
+| Piece | Portable? |
+|---|---|
+| `context-pack-template/`, `example-pack/`, your own `my-pack/` | Yes. Plain markdown. Paste it, upload it, or point any agent at the folder |
+| `system-prompt.md` | Yes. Paste it as the system prompt, custom instruction, or persona, whatever your tool calls it |
+| `evals/check_brief.py` | Yes. Plain Python 3, no dependencies. `python3 evals/check_brief.py <file>` |
+| `skills/*/SKILL.md` | The content is portable, the auto loading is not. Claude Code picks these up on its own. Everywhere else, paste the file's contents into the chat when you need that step |
+| Deploying as a managed agent | Claude specific. Codex and other platforms have their own hosted agents. The pack and the prompt move across unchanged; only the deploy screen differs |
+
+### Using this without file access
+If your tool cannot read a local folder, it only ever needs four things. Paste them in this order:
+
+1. `system-prompt.md` as the system prompt or custom instruction
+2. Your six pack files, as one message, each under a heading with its filename
+3. `skills/four-whys-research/SKILL.md` as a second message
+4. Then the company URL and the person's LinkedIn URL
+
+That is the whole agent. Everything else in this repo is there to help you build the pack and check the output.
+
+### Building a different agent this way
+`skills/ship-an-agent/references/platforms.md` carries the same guidance for any agent build, not just this one: where to work, where to run it, what is portable and what is not.
+
+### A note on skills
+A "skill" here is just a markdown file describing a procedure. Claude Code loads them automatically from `skills/`. Codex reads `AGENTS.md` at the root, which points at the same files. Any other tool: paste the one you need. The method does not change.
 
 ## The one idea worth stealing
 **Method in the agent, knowledge in the pack.** The prompt never mentions your company, so the day you change what you sell, or who you sell to, you edit six markdown files and nothing else. That is what lets one agent serve a whole team, and what stops you rebuilding it every quarter.

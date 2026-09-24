@@ -1,20 +1,19 @@
-# Proof: why us
+# Proof: what we can say, and who we may name
 
-*Feeds Why us and the proof in the angle. Organized by problem and persona so the agent can match one proof point to the problem it found. Real metrics, real quotes, real links. If you can't name the customer publicly, say so, and the agent won't name them either.*
-
-## Proof points
-| Customer | Can we name them? | Problem | Persona | Result (number) | Quote | Link |
-|---|---|---|---|---|---|---|
-| [ ] | [yes / no / anonymized as "..."] | [problem] | [persona] | [ ] | "[ ]" | [ ] |
-| [ ] | [ ] | [ ] | [ ] | [ ] | "[ ]" | [ ] |
-
-## Content the rep can point to
-| Asset | Type | Problem | Persona | Link |
-|---|---|---|---|---|
-| [ ] | [case study, guide, calculator, one-pager] | [ ] | [ ] | [ ] |
-
-## Customers for lookalike matching (level 3)
-*Optional at level 1. Best customers by industry and size, so the agent can say "you look like X." Only names you're allowed to use.*
-| Customer | Industry | Size | Investors (if known) |
+## Named customers a rep may use
+Only customers you are contractually and politically allowed to name. If you are unsure, leave them out: the agent will never name a customer that is not on this list.
+| Customer | What changed | The number | Source |
 |---|---|---|---|
-| [ ] | [ ] | [ ] | [ ] |
+| [name] | [what got better] | [the result] | [link to the case study or page] |
+
+## Company claims, never a customer result
+[Aggregate claims from your own marketing. The agent keeps these separate from customer results, because a rep who blurs them gets caught.]
+
+## Content a rep can point to
+The value-first next step. Every brief ends with one of these, so give the agent something real to offer.
+| Asset | Good for | Link |
+|---|---|---|
+| [calculator, benchmark report, teardown] | [which persona and problem] | [url] |
+
+## How to pick
+[One or two lines on matching proof to the problem. For example: match the customer's size and model before you match the result, because a number from a company ten times their size reads as a threat, not a promise.]

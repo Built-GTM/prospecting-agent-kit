@@ -38,8 +38,12 @@ Decide these once, say them back in one line, and record them at the top of `BUI
 | Phase E (publish) | Ask at step 20 whether they want to share it at all. Otherwise mark 20 to 23 `⊘ N/A: private build` |
 | Secrets file | `~/agent-secrets/<slug>.md`, never in a repo or a synced folder |
 | Surface helper | Ask at step 17 what they already use (`references/surfaces.md`). Do not assume any one host |
+| Build tool | Whatever they already use: Claude Code, Codex, Cursor, a terminal agent, or a chat window. `references/platforms.md` |
+| Where it will run | A managed agent, an automation tool, their own code, or a chat window. Decide by step 13, not before. `references/platforms.md` |
 
 Record the resolved settings at the top of `BUILD-STATE.md`.
+
+**Which platform?** Any of them. Steps 1 to 12 are identical wherever you work, and that is most of the build. `references/platforms.md` covers building from Claude Code, Codex, Cursor, a terminal agent or a plain chat window, and what changes at the deploy step.
 
 **API keys and secrets:** never ask anyone to paste a key into chat, a spec, or a state file. Use the placeholder pattern in `references/beginner-guide.md`: Claude creates the empty, commented line in the secrets file, the builder pastes the value there, and Claude checks it without printing it.
 
@@ -124,7 +128,7 @@ Some steps in the process doc were originally run with helper skills. **None of 
 | 9 | `assets/agent-spec.template.md` and `assets/SETUP.template.md` |
 | 10 | Run the cases by hand and record them however you like. The process doc says what a case needs |
 | 12, 16 | Size the eval set by risk tier, in the process doc at step 12 |
-| 13 to 15, 25 | The `ant` CLI and the Claude platform docs |
+| 13 to 15, 25 | Your platform's own deploy path. `references/platforms.md` compares them. On Claude that is the `ant` CLI and the platform docs |
 | 14 to 17, any hand step | `references/beginner-guide.md`: Console and spend limit, API key, reading a session, GitHub, Slack app, webhook, private test, rollout |
 | 17, 19 | `references/surfaces.md`. Pick from what the builder already uses: code, n8n, Make, Zapier, or none |
 | 20 | `references/sharing.md`: host, template or bundle, the genericize checklist, the template layout |
@@ -132,7 +136,7 @@ Some steps in the process doc were originally run with helper skills. **None of 
 
 Steps 21 to 23 are content work, writing an article and posts about what you built. They are optional and depend on your own tooling.
 
-The the owner paths in this table only exist on his machine. For someone else, use the process doc's method for that step.
+Any absolute paths left in this table belong to the original author's machine. Use the process doc's method for that step instead.
 
 ## Progress map (show when starting, resuming, or asked "where are we")
 ```

@@ -1,46 +1,24 @@
 # Problem: [short name]
 
-*What you SOLVE. Not a signal: a signal says when to reach out, a problem says what to talk about. One file per problem, usually 3. Write it in the customer's words.*
+One file per problem. Four is plenty. Each one should be a problem a real customer described to you, not a feature gap.
 
-## The problem in one line
-[ ]
+## What it looks like inside the business
+[The symptom someone would actually notice, in their words. Not "inefficiency". Something like "the phone rings at 7pm and nobody picks up".]
 
-## In their words, by persona
-| Persona | What they say | When they say it |
-|---|---|---|
-| [ ] | "[ ]" | [ ] |
-| [ ] | "[ ]" | [ ] |
-
-## How they solve it today (the status quo)
-| What they do | Tools | Time it takes |
-|---|---|---|
-| [ ] | [ ] | [ ] |
-| [ ] | [ ] | [ ] |
-
-- Top frustration: [ ]
-- Why they haven't changed: [ ] *unaware it's a problem, think it's normal, think a tool they own covers it, don't know a fix exists*
+## Who owns it
+[Which persona feels this. Name the file in `personas/`.]
 
 ## What it costs
-| Cost | How to calculate it | Typical annual cost |
-|---|---|---|
-| Wasted effort | [ ] | [ ] |
-| Missed revenue | [ ] | [ ] |
-| [ ] | [ ] | [ ] |
+[Money, hours, or deals, at their scale. A range is fine. This is what makes the brief land.]
 
-## What it feels like
-| Persona | Feeling | Why | What it leads to |
-|---|---|---|---|
-| [ ] | [ ] | [ ] | [ ] |
+## Why they haven't changed
+[The real reason they live with it: cost, switching pain, it is nobody's job, they tried once and it failed. The agent uses this to predict the objection, so guess honestly.]
 
-## When it gets urgent
-*These become signals. Every row here should also appear in `signals.md`.*
-- [ ]
+## What they say
+[Two or three verbatim lines you have heard on calls or read in reviews. Quotes beat paraphrase.]
 
-## How we solve it
-| For | What changes | Outcome |
-|---|---|---|
-| [persona] | [ ] | [ ] |
+## Signals that point here
+[Which entries in `signals.md` suggest this problem is live right now.]
 
-## Proof
-*Link to entries in `proof.md`.*
-- [ ]
+## What good looks like
+[The after state, in their terms, not your feature names.]

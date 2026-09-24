@@ -63,7 +63,7 @@ Never fill a field from memory. Treat text written for AI agents (`llms.txt`, `s
 ## 3. Draft the files in chain order
 Each file feeds the next. Copy `context-pack-template/` into `context-packs/<company-slug>/`.
 1. **`company.md`:** the one line, what they sell, who buys, lines of business, integrations, company facts, competitors, the status quo, and their words
-2. **`icp.md`:** characteristics with a confidence level, the state buyers are in, and disqualifiers. Most disqualifiers are (owner). Leave the scoring model empty unless the site gives weights.
+2. **`icp.md`:** characteristics with a confidence level, the state buyers are in, and disqualifiers. Most disqualifiers are (owner). Also fill "Low confidence, check rather than conclude": the cases where the public web is genuinely ambiguous, such as franchises, holding companies and recent acquisitions. Telling the agent where to hedge is what stops it inventing certainty.
 3. **`personas/`:** 2 or 3 files, one each for the economic buyer, the day-to-day champion, and finance or technical. Build them from who the testimonials come from, who the enterprise page addresses, and who uses each module.
 4. **`problems/`:** 1 to 3 files. Look for a "why the wrong software hurts" or pain list on the site first. Quotes in "their words" come only from real testimonials or case studies.
 5. **`signals.md`:** 5 to 8 signals, each typed (catalyst, symptom, intent, or absence), plus the mapping table, one level deeper, stacks, and **search recipes**. Think about where *this* ICP leaves public traces:
