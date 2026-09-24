@@ -113,6 +113,9 @@ If your tool cannot read a local folder, it only ever needs four things. Paste t
 
 That is the whole agent. Everything else in this repo is there to help you build the pack and check the output.
 
+### Building a different agent this way
+`skills/ship-an-agent/references/platforms.md` carries the same guidance for any agent build, not just this one: where to work, where to run it, what is portable and what is not.
+
 ### A note on skills
 A "skill" here is just a markdown file describing a procedure. Claude Code loads them automatically from `skills/`. Codex reads `AGENTS.md` at the root, which points at the same files. Any other tool: paste the one you need. The method does not change.
 
