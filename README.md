@@ -6,7 +6,27 @@ Give it a company URL and one LinkedIn profile. It hands back why that person sh
 
 ---
 
-## Start in 10 minutes
+## Two ways in. Pick one.
+
+### Install the Bot, about 30 minutes, nothing to download
+**[prospect scout on the Grok Bot Marketplace](PASTE MARKETPLACE LINK)**
+
+Click Add. On its first run it reads your website, asks you five questions nobody else can answer, and writes your onboarding binder (context pack) for you. After that it runs briefs. Once a month it asks whether your binder has gone stale.
+
+Everything inside it is in this repo: the exact build block, the anti jobs and the listing are in [`marketplace/prospect-scout.md`](marketplace/prospect-scout.md). Nothing is hidden from you.
+
+Pick this if you want it working today.
+
+### Build your own, about 10 minutes to start
+Everything below. You get the same method with your own model, your own connections, your own tools, and the agent running wherever you want it: Claude, ChatGPT, Codex, your own code.
+
+Pick this if you want to connect your CRM, run it on a schedule you control, change the method, or ship it to a team.
+
+**Both roads use the same binder.** The six markdown files are the part that is actually yours, and they move between the two without conversion. Start with the Bot and graduate later if you want.
+
+---
+
+## Build your own, starting in 10 minutes
 
 ### 1. Get the files
 **No GitHub account needed.** You are reading this page on GitHub. Near the top of the page there is a green **Code** button. Click it, then click **Download ZIP**. Your browser drops a zip file into your Downloads folder. Unzip it (double-click it on a Mac, right-click it and choose **Extract All** on Windows), then move the unzipped folder into your Documents folder. That folder is the kit. Everything below happens inside it.
@@ -84,6 +104,7 @@ Every name below is a folder or a file inside the kit folder.
 | `skills/four-whys-research/` | The playbook (skills) for each Why: which sources to trust, how to check a person is still in the role, when to stop |
 | `evals/check_brief.py` | The ride along (evals). The deliverable checker, 34 rules |
 | `skills/ship-an-agent/` | **The whole 26 step process**, from idea to a live agent: the deliverable, the split, the ride along, the desk (deployment), the handover. This is the method behind everything above |
+| `marketplace/` | The published Grok Bot, in full: its build block, its anti jobs and its listing. Read this if you installed the Bot and want to know what is in it |
 | `deploy/` | One page per platform for the last step only: Claude, Grok Bot, OpenAI. You open it only if you want the agent running without you. Everything above this row is the same wherever you run it |
 
 ## Building something other than a prospecting agent

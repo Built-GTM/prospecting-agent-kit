@@ -6,6 +6,12 @@
 
 ---
 
+## If you just want it working, install it instead
+
+We publish this agent as a Bot on the marketplace: **prospect scout**. Click Add and its first run builds your binder for you. `marketplace/prospect-scout.md` in this repo has its complete build block and listing, so you can read exactly what you installed.
+
+This guide is the other road: building your own, with your own tuning. Take it if you want to change the method, use different tools, or understand every piece. It takes longer and you learn more.
+
 ## First, how any of this works
 
 Read this even if you skim the rest. Everything below makes no sense without it.
@@ -320,8 +326,10 @@ That rule was written months ago for a different platform. It turns out to matte
 
 ## On the marketplace
 
-Grok has a Bot Marketplace: discover, import, publish. The paste block above tells Dr Eggbot not to publish, and that is deliberate.
+We publish one Bot there, **prospect scout**, and it is the fastest way for anyone to get this working. Its full build block, anti jobs and listing are in `marketplace/prospect-scout.md`, so nothing about it is hidden.
 
-Handing someone a finished Bot hands them a Bot that knows nothing about their business. The binder is the part that cannot be shared, because it is the part that is theirs. Share the binder template and the method instead.
+What we do **not** publish is a binder. That is the part that cannot be shared, because it is the part that is yours. The published Bot solves this by building the installer their own binder on its first run rather than shipping ours.
 
-A shared bot is someone else's business. A shared binder template is your own.
+That is also why the block in this guide ends with "DO NOT publish this Bot to the marketplace." The Bot you build here is yours, tuned to your business, and a second copy of it on the shelf helps nobody. If you build something genuinely different, publish that instead.
+
+A shared bot that knows nothing about you is a demo. A bot that learns your business first is a teammate.
