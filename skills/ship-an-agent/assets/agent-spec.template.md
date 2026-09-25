@@ -18,22 +18,22 @@ Who uses it, what it does for them, what "done" looks like.
 | Single-user or multi-user | if multi-user: one vault + one memory store per user |
 
 ## 3. Jobs to be done
-Numbered list of the verbs. Each verb must map to a tool, skill, or MCP server in section 6 (the viability gate).
+Numbered list of the verbs. Each verb must map to one of the keys (tools and connections) in section 6, or to a page of the playbook (skills) in section 5. This is the viability gate.
 
 | # | Job | Mapped to |
 |---|---|---|
 | 1 | | |
 
-## 4. System prompt
-Lives in `system-prompt.md`. Summarize here: role, operating principles, output contract, what it must never do. Keep the prompt about judgment. Procedures go in skills.
+## 4. The job description (prompt)
+Lives in `system-prompt.md`. Summarize here: role, operating principles, the deliverable (contract), what it must never do. Keep the job description about judgment. Procedures go in the playbook.
 
-## 5. Skills
+## 5. The playbook (skills)
 | Skill | Type (anthropic / custom / repo) | What it teaches | Source material |
 |---|---|---|---|
 
 Max 20 per agent. Each custom skill is a folder with `SKILL.md` in `skills/<skill-name>/`.
 
-## 6. Tools and connections
+## 6. The keys (tools and connections)
 | Capability | Kind | Permission | Credential (vault type + secrets file line name) |
 |---|---|---|---|
 | bash, read, write, edit, glob, grep | agent toolset | always_allow | none |
@@ -42,7 +42,7 @@ Max 20 per agent. Each custom skill is a folder with `SKILL.md` in `skills/<skil
 | | env var API (curl from bash) | | environment_variable, allowed_hosts |
 | | custom tool (my app answers) | n/a | held host-side |
 
-## 7. Memory
+## 7. Memory: where the onboarding binder (context pack) lives
 | Store | Access | Scope | Layout | Seeded from |
 |---|---|---|---|---|
 | | read_only | shared across users | | |
@@ -56,7 +56,7 @@ cloud or self_hosted, networking (unrestricted or limited + allowed hosts), pack
 ## 9. Kickoff shape
 Conversational (`user.message`), outcome with rubric (`user.define_outcome`), or scheduled deployment (cron + initial events). Session budget cap in dollars.
 
-## 10. Evals
+## 10. The ride along (evals)
 5 to 10 real test prompts with what a pass looks like. Outcome rubric if used.
 
 ## 11. Guardrails
@@ -64,10 +64,10 @@ What needs a human yes. What it refuses. Data it must not expose.
 
 ## 12. Build checklist
 - [ ] Spec approved by the builder
-- [ ] Skills written and reviewed
+- [ ] Playbook written and reviewed
 - [ ] Memory seeded
-- [ ] Credentials in vault (names only listed here)
+- [ ] Keys in the vault (credential names only listed here)
 - [ ] agent.yaml + environment.yaml committed to the deploy repo
 - [ ] Smoke test session passes (can reach every connection)
-- [ ] Evals pass
+- [ ] The ride along passes
 - [ ] Surface wired

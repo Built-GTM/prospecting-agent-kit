@@ -22,27 +22,37 @@ Create a folder at /workspace/pack/ and confirm it is empty.
 
 The Bot does it and tells you it is done. Making folders, filing files, checking what is there, all of it is a sentence, never a click.
 
-`/workspace` is just the name of the main folder on the Bot's computer, the way `Documents` is the name of a folder on yours. xAI's own docs put it plainly: *"The computer has a shared workspace at `/workspace`. Ask Bots to keep durable project files there and use clear project folders."* **Ask** is the operative word.
+`/workspace` is the name of the main folder on the Bot's computer, the way `Documents` is the name of a folder on yours. xAI's own docs put it plainly: *"The computer has a shared workspace at `/workspace`. Ask Bots to keep durable project files there and use clear project folders."* **Ask** is the operative word.
+
+**So this guide is written as the conversation.** Each step shows the sentence you type, what comes back, and how you know it worked. The sentences are not magic words. Put them in your own wording if you prefer. The Bot is reading for meaning.
 
 **You can watch.** Open **Agent Computer** from inside a conversation and you see the Bot's actual screen, live, while it works. You do not need it, but open it the first time you load the binder. Seeing the files appear beats trusting that they did.
 
-Nothing in this guide requires code, a terminal, or moving anything on your own machine.
+Nothing in this guide requires code, a terminal, or moving anything on your own machine. There is one exception, a single command near the end, and it announces itself when it arrives.
 
 ## Before you start
 
-Fill the binder. `context-pack-template/` is scaffolding; nothing here works until your business is in it. Read `example-pack/` first to see the shape.
+**Open in a browser:** your Grok account, signed in, on a plan that lets you create Bots.
+
+**Open on your own computer:** the kit folder, downloaded and unzipped, so you can drag files out of it. `README.md` at the top of this kit has the two ways to get it.
+
+**Fill the onboarding binder (context pack).** The binder is the markdown files that tell the agent about your business. `context-pack-template/`, a folder inside the kit, holds the blank ones. `example-pack/`, another folder inside the kit, holds a finished set for a real company. Read `example-pack/` first to see the shape, then follow `SETUP.md` step 2 to fill in your own. The template is scaffolding; nothing here works until your business is in it.
 
 Two sections the agent reads by name, so skipping them fails silently:
 - `company.md`, **"Our own domains, for the customer check."** This is how it knows a prospect already pays you.
 - `signals.md`, **"Known vendor domains."** This is how it avoids treating your own vendor's site as a buying signal.
 
+Those are headings inside those two files, and the agent goes looking for those exact words. Leave the headings as they are and write your own content underneath them.
+
 ## Step 1. Decide where the binder lives
 
-Do this before you create the Bot.
+Nothing to type here. This is a decision, and it changes what you do in step 3, so make it before you create the Bot.
 
 Every Bot on your account shares one cloud computer, and `/workspace` on it is **writable**. A helpful Bot will edit your ICP. That is silent drift in the one artifact whose whole value is that it does not drift.
 
 So keep the real binder in a connected Drive or Notion, and treat `/workspace/pack/` as a disposable copy you re-sync before a run. The files are small markdown, far under the 25MB attachment cap.
+
+**A connector** is a link you set up once between Grok and an account you already have elsewhere, such as Google Drive or Notion. Once it exists, you can ask the Bot to read a folder over there in a sentence, the same way you ask it about a file on its own computer. If you have no connector, or your workspace does not allow one, step 3 has a drag and drop route instead. It works. It is more clicks each time you re-sync.
 
 Running more than one client or territory? `/workspace/pack-acme/`, `/workspace/pack-globex/`. One Bot, many binders.
 
@@ -50,9 +60,11 @@ Running more than one client or territory? `/workspace/pack-acme/`, `/workspace/
 
 You can create a Bot by hand. Do not.
 
-**Dr Eggbot** (`x.ai/bot/marketplace/bots/dr-eggbot-v2`) is a Bot that designs Bots. It asks a short set of preference questions and builds the thing with `CreateAgent`, writing skills, routines, profile and voice in one pass. Its own design standard is one job, one voice, explicit anti jobs, no leftover tools, which is the same standard this kit is built on.
+**Dr Eggbot** is a Bot that designs Bots: https://x.ai/bot/marketplace/bots/dr-eggbot-v2 It asks a short set of preference questions and builds the thing with `CreateAgent`, writing skills, routines, profile and voice in one pass. Its own design standard is one job, one voice, explicit anti jobs, no leftover tools, which is the same standard this kit is built on.
 
-**Paste the whole block below into Dr Eggbot.** Change nothing except the two bracketed lines.
+**What you do.** Open that address in your browser, signed in to your Grok account, and start a conversation with Dr Eggbot the way you would with any other Bot.
+
+**What you type.** The whole block below, as your first message. Change nothing in it.
 
 ```
 Build me a Bot.
@@ -105,9 +117,23 @@ messaging, no posting. Remove every other tool.
 DO NOT publish this Bot to the marketplace.
 ```
 
-Two lines to check afterwards, because they are the ones that matter and the ones most likely to get softened: **anti job 3** (no outreach copy) and **anti job 8** (the binder is read only). Anti job 8 has no equivalent in the Claude build because Claude mounts the binder read only and the platform enforces it. Here it is a rule rather than a guarantee. That is the honest price.
+**What comes back.** Dr Eggbot asks you its preference questions, in ordinary language, mostly about tone and behaviour. Answer each in a sentence. Where a question is already answered by the block you pasted, say so and point at the line. Then it builds the Bot.
+
+**You know it worked when** a Bot named `prospect scout` shows up in your own list of Bots, and you can open a conversation with it that is separate from this one.
+
+**Then read two lines back, by hand.** These are the two most likely to have been softened on the way through. In the Dr Eggbot conversation, type:
+
+```
+Show me the finished instructions for prospect scout in full, exactly as saved.
+```
+
+Check **anti job 3** (no outreach copy) and **anti job 8** (the binder is read only) against the block above. If either is missing or watered down, say which one, quote the original line, and have it written back before you go on.
+
+Anti job 8 has no equivalent in the Claude build because Claude mounts the binder read only and the platform enforces it. Here it is a rule rather than a guarantee. That is the honest price.
 
 ## Step 3. Put the binder on the computer
+
+Everything in this step happens in a conversation with `prospect scout`, not with Dr Eggbot.
 
 ### What `/workspace` is, and what it is not
 
@@ -115,22 +141,24 @@ Two lines to check afterwards, because they are the ones that matter and the one
 
 `/workspace/pack/` is **a folder you create.** It does not exist until you make it. It is the convention this kit uses so the anti jobs and the stop rule can name one fixed location, and you can call it something else as long as you change it in all four places the paste block mentions it.
 
-Create it first:
+**You type:**
 
 ```
 Create a folder at /workspace/pack/ and confirm it is empty.
 ```
 
+**What comes back.** One line saying the folder exists and has nothing in it. If it says anything else, read it: a Bot that says it cannot is telling you something useful about your plan or your permissions.
+
 ### Getting the files in
 
-Drag them into the composer, or use the attachment control.
+Drag the files from the kit folder on your computer into the message box at the bottom of the conversation, the same box you type in. There is also an attachment control beside it if you would rather pick files from a dialog.
 
 **Six attachments at a time on desktop**, up to 25MB each for documents. Your binder is seven files or more once `personas/` and `problems/` have real content in them, so plan on two drops:
 
 - Drop one: `company.md`, `icp.md`, `signals.md`, `proof.md`
 - Drop two: your persona files and your problem files
 
-Ask it to file them as it goes:
+**You type,** in the same message as the first four attachments:
 
 ```
 Save these into /workspace/pack/, keeping the filenames exactly as they are.
@@ -138,9 +166,19 @@ Persona files go in /workspace/pack/personas/, problem files in
 /workspace/pack/problems/. Do not edit the contents of any of them.
 ```
 
+**What comes back.** A list of where it filed each one. Then attach the second drop and send the same sentence again.
+
 Do not zip them. xAI's docs note that large, encrypted, damaged or unusual files may not be readable, and a zip buys you nothing here.
 
-**The better route, if you have a connector.** Put the binder in a connected Drive or Notion folder and have the Bot sync it down. That keeps your source of truth outside the shared writable computer, which is the whole point of step 1, and it makes re-syncing before a run one sentence instead of two drops.
+**The better route, if you have a connector.** Put the binder in a connected Drive or Notion folder, and instead of dragging anything, type:
+
+```
+Read the folder <the folder's name in Drive or Notion> and copy every file in it
+into /workspace/pack/, keeping the filenames and the folder structure exactly.
+Do not edit the contents of any of them.
+```
+
+That keeps your source of truth outside the shared writable computer, which is the whole point of step 1, and it makes re-syncing before a run one sentence instead of two drops.
 
 ### Verify it landed
 
@@ -152,61 +190,113 @@ and every domain listed under "Our own domains".
 Then list every file you can see under /workspace/pack/.
 ```
 
-If it cannot list your domains, the stop rule will never fire and every brief after this is unsafe. If a file is missing, the Why it names will be missing too. Fix both before going on.
+**What a right answer looks like.** One line on what you sell. Then your domains, spelled out, matching the ones in your own file. Then a file list that matches what you sent, including the files inside `personas/` and `problems/`.
 
-## Step 4. Load the playbook
+If it cannot list your domains, the stop rule will never fire and every brief after this is unsafe. If a file is missing, the Why it names will be missing too. Fix both before going on: re-send anything absent from the list, and if the domains come back empty, open `company.md` on your own computer and check that heading still reads "Our own domains".
+
+## Step 4. Load the playbook (skills)
+
+The playbook is the research method: where to look for each Why, which sources to trust, how to check a person is still in the role, when to stop. It is one file in the kit, `skills/four-whys-research/SKILL.md`.
 
 Two routes.
 
 **Demonstration, the Grok native one.** Walk the Bot through one full research path by hand, once, then save the path as a skill. This is the nicest thing about the platform and it is far more teachable than writing a file.
 
-**The file route.** Grok Build, the CLI, reads `SKILL.md` from `.grok/skills/` and also reads `AGENTS.md`. Whether hosted Grok Bot picks up a skills folder the same way is **the open question in this guide.** Try the file first, fall back to demonstration.
+In practice: open `skills/four-whys-research/SKILL.md` on your own computer, read it beside the chat, and work one real prospect with the Bot a step at a time, correcting it as you go. Open with something like:
+
+```
+We are going to work one research brief together, slowly, and then save how we
+did it. Start with the customer check on <a company URL>, and stop when that one
+thing is done. I will tell you what comes next.
+```
+
+When the brief is finished and you are happy with it:
+
+```
+Save the path we took on that brief as a skill named four-whys-research, so you
+follow the same steps next time without me walking you through them.
+```
+
+**The file route.** Grok Build, the CLI, reads `SKILL.md` from `.grok/skills/` and also reads `AGENTS.md`. A CLI is a developer tool you drive by typing commands into a terminal window, and it is a different product from the hosted chat Bot this guide is about. Whether hosted Grok Bot picks up a skills folder the same way is **the open question in this guide.** Try the file first, fall back to demonstration.
+
+Trying the file first means attaching `SKILL.md` the way you attached the binder, then:
+
+```
+Follow the method in this file on every brief from now on.
+```
+
+If the next brief ignores what is in that file, you have your answer, and demonstration is your route.
 
 Either way, one thing cannot be demonstrated and must be typed in afterwards, from `skills/four-whys-research/SKILL.md`:
 
 > Budget: about 15 searches or page reads per brief. Stop sooner once you have one good reason. A strong signal beats a dossier.
 
-A budget is a number and a stopping condition. You cannot show it by doing it once.
+A budget is a number and a stopping condition. You cannot show it by doing it once. So type it in as a standing instruction:
 
-## Step 5. Hand over the keys, carefully
+```
+Add this to your standing instructions, word for word. Budget: about 15 searches
+or page reads per brief. Stop sooner once you have one good reason. A strong
+signal beats a dossier.
+```
+
+## Step 5. Hand over the keys (tools and connections), carefully
 
 There is no per Bot credential boundary. Sign in once for this Bot and every other Bot on your account has the session. Deleting the Bot does not remove it.
 
+"Signing in for the Bot" means the browser on that shared cloud computer now holds a signed in session, the way your own browser stays signed in to your email. That session is on the shared machine, not inside one Bot.
+
 In order of preference:
-1. **Connectors and MCP**, because the OAuth token sits on the connector backend rather than as a cookie on the shared machine.
-2. **A read only account** scoped to this task, if you must sign in through a browser. Sign out when the run is done.
+1. **Connectors and MCP**, because the OAuth token sits on the connector backend rather than as a cookie on the shared machine. MCP is a standard way of plugging an outside tool into an agent. What that first sentence means in practice: the permission to reach that account is held by the connection itself, on the other side, rather than sitting on the shared computer for any Bot to pick up.
+2. **A read only account** scoped to this task, if you must sign in through a browser. That means a second login to the system in question, created by whoever administers it, allowed to read and not to change anything. Sign out when the run is done.
 3. **Never** the CRM admin account.
 
-On Enterprise, turn on the MCP allowlist, network controls and action recording before the first real run.
+On Enterprise, turn on the MCP allowlist, network controls and action recording before the first real run. Those are workspace level settings and you need administrator rights to reach them. If that is not you, this is the thing to go and ask for.
 
 This agent needs web search and page reading. It does not need your CRM. Resist the urge.
 
-## Step 6. Run the ride along
+## Step 6. Run the ride along (evals)
 
-Use your own cases. What you are checking is the same everywhere:
+The ride along is the set of test cases you run before anyone else touches the agent. A case is one company URL, one LinkedIn profile URL, and what you already know the right answer looks like. Use your own: a few easy accounts, a few messy ones, an existing customer of yours, and one where the right answer is to refuse. The kit ships no cases on purpose, and `README.md` says why.
+
+What you are checking is the same everywhere:
 
 - Does it hedge when it should hedge
 - Does it catch a customer hiding in your list
 - Does it refuse to write the email
 - Does it say "No signal found" instead of inventing one
 
-Save a brief to a file and score it the same way as anywhere else:
+Then score one properly. **This part happens on your own computer, not in the chat.** Copy the brief out of the conversation, paste it into a plain text file, save it with a `.md` ending, and type this into a terminal pointed at the kit folder:
 
 ```
 python3 evals/check_brief.py <the file you saved the brief in>
 ```
 
+Replace the part in angle brackets, brackets and all, with the name of your file. That is the only command in this guide typed anywhere other than the chat, and the checker is plain Python 3 with nothing to install.
+
 Two Grok specific additions.
 
 **A test run does real work.** xAI's docs say so plainly: it navigates live sites, changes files and calls connected tools. There is no dry run. Point the ride along at a throwaway account, or accept that every eval touches production.
 
-**Run it twice and diff the binder.** If any file under `/workspace/pack/` changed, anti job 8 is not holding and everything downstream is built on drift.
+**Run it twice and check the binder did not move.** If any file under `/workspace/pack/` changed, anti job 8 is not holding and everything downstream is built on drift. You check that in the chat, before and after:
 
-## Step 7. Put it at a desk
+```
+List every file under /workspace/pack/ with its size and the time it last changed.
+```
 
-A routine, on a schedule. Up to fifty per Bot.
+Send that once before the two test briefs and once after, then compare the two replies yourself. Any size or time that moved is your warning.
 
-Two limits before you rely on it: only the **twenty most recent run records** are kept, so a slow degradation from six weeks ago is unrecoverable, and deleting a routine has no undo.
+## Step 7. Put it at a desk (deployment)
+
+A **routine** is a standing instruction the Bot runs on a timer, with nobody in the chat. You get one the same way you get everything else here, by asking:
+
+```
+Create a routine that runs every weekday at 8am in my timezone and opens by
+asking me which company and which person to research today.
+```
+
+Note the shape of that. This agent takes a company and a person from a human, so a routine here prompts you rather than running unattended. A routine that picks its own prospects is a different agent, and not this one.
+
+Up to fifty per Bot. Two limits before you rely on them: only the **twenty most recent run records** are kept, so a slow degradation from six weeks ago is unrecoverable, and deleting a routine has no undo. Both of those numbers come from a third party write up rather than xAI's own docs, so confirm them before you depend on either.
 
 There is no separate Grok Bot spend cap today, so the per run cost discipline is yours to keep rather than the platform's to enforce.
 

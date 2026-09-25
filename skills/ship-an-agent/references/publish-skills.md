@@ -1,6 +1,6 @@
 # Closing a build: publish the new skills
 
-Every agent build produces skills that work beyond the agent: a way to read a post, a report checker, a feedback loop, a better way to write a contract. Publishing the proven ones turns each build into free tools people unlock with an email, which grows the subscriber list and sends traffic to the skills page. It runs once, at the close of every build (step 24), after the agent has passed its gates.
+Every agent build produces skills that work beyond the agent: a way to read a post, a report checker, a feedback loop, a better way to write a deliverable (contract). Publishing the proven ones turns each build into free tools people unlock with an email, which grows the subscriber list and sends traffic to the skills page. It runs once, at the close of every build (step 24), after the agent has passed its gates.
 
 **The rule that shapes it:** people link to the page, they never get the file. Installs sit behind the free subscribe unlock, which is both the audience capture and the update channel. A copied SKILL.md skips both and goes stale the moment the skill changes.
 
@@ -15,7 +15,7 @@ Include:
 - anything built for the builder's side (a checker, a template, an import script)
 - changes to existing public skills that the build proved (for example a better step in `agent-contract`)
 
-"Proof" is a receipt from this build: the eval gate, a platform run, a real user task. No proof means it isn't a candidate yet.
+"Proof" is a receipt from this build: the ride along gate (evals), a platform run, a real user task. No proof means it isn't a candidate yet.
 
 ## 2. Decide (the builder)
 Put a question on the checklist for each skill, with a recommendation:
@@ -42,13 +42,13 @@ Group by the problem the reader has, not by the build that made them. Add or upd
 
 ## 5. Publish (Claude, only after the builder's yes)
 1. Push the public twins to the distribution repo (the owner: `heath-gtm/Skill-Builder`, with `HEATH_GTM_PAT`).
-2. Put the cards on the site, each showing its eval verdict (SHIP-A-SOLUTION Stage 3): the tools page in its collection with install and download behind the free subscribe unlock, and a builds card when there's a real receipt.
+2. Put the cards on the site, each showing its ride along verdict (SHIP-A-SOLUTION Stage 3): the tools page in its collection with install and download behind the free subscribe unlock, and a builds card when there's a real receipt.
 3. Link everything to the page, never the file: the agent's `SETUP.md` ("the skills in this folder are also free at <page>"), the build article, and each post from it.
 4. If the build is tied to a show, sponsor, or partner, run the partner pack (tagged short link, copy at three lengths, paste-ready card) so their audience's unlocks are attributed.
 
 ## 6. Gate (Claude checks, the builder confirms)
 - The install URL returns 200 for every published skill.
-- Each card renders with its eval verdict visible.
+- Each card renders with its ride along verdict visible.
 - A test unlock (the builder's own email) adds the subscriber with the right source label.
 - The confidentiality gate passed on every twin.
 - Zero em dashes or en dashes on every page and file.

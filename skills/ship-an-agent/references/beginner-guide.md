@@ -102,16 +102,16 @@ A webhook is how the Claude platform tells your helper "the agent finished a tur
 ## Plain-words glossary
 | Word | Say it like this |
 |---|---|
-| Agent | The saved job description: instructions, skills, which model. It's versioned, so you can go back. |
+| Agent | The whole worker, saved: its job description (prompt), its playbook (skills), and which model it runs on. It's versioned, so you can go back. |
 | Session | One run of the agent, like one shift at work. |
 | Environment | The locked-down computer a session runs on, and which websites it may reach. |
-| Memory store | Reference folders the agent reads, like a binder on the desk. |
-| Skill | A how-to guide the agent follows for one part of the job. |
-| Vault | A locked box of passwords the agent can use without seeing them. |
+| Memory store | Where the onboarding binder (context pack) sits: the reference folders the agent reads. |
+| Skill | One page of the playbook: a how-to guide the agent follows for one part of the job. |
+| Vault | Where the keys (tools and connections) are held: a locked box of passwords the agent can use without seeing them. |
 | API key | The password that lets Claude's tools use your Claude account. |
 | Webhook | A doorbell: one system rings another when something happens. |
 | Relay or helper | The small piece in the middle that passes messages between Slack (or a form) and the agent. |
-| Deploy | Put the latest version where people use it. |
+| Deploy | Give it a desk: put the latest version where people use it. |
 | Dry run | Show what would change, without changing anything. |
 
 ## Things Claude checks for the builder (lessons from show-topic-scout)
@@ -122,7 +122,7 @@ Say these out loud when they come up, in one line each.
 4. **People reply in threads without mentioning the bot.** A Slack helper must hear thread replies, not only mentions.
 5. **A new link in the same thread is a new job.** Start a fresh session so nothing about the last person carries over.
 6. **Agents write Markdown and Slack shows it raw** unless the helper sends a Markdown block or converts it.
-7. **Rules in a prompt can slip,** like "no dashes." Add a safety net in the helper for anything that must never reach users.
+7. **Rules in the job description can slip,** like "no dashes." Add a safety net in the helper for anything that must never reach users.
 8. **Unconnected tools make runs slower and more expensive** (connectors added in the Console with no login fail at every start). Remove what isn't connected.
 9. **The first real test finds what unit tests can't.** Always run W7 before inviting real users, and read the session traces after it.
 10. **A choice the builder didn't ask for** (an advisor model, a paid tool) needs a sentence on cost and a test before it ships.

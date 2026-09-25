@@ -53,24 +53,24 @@ Assume the builder has never used a terminal, GitHub, or an API key.
 - **Notes** never contain secrets, tokens, or personal contact details. They may contain ids, URLs, costs, and versions.
 
 ## Starter phases and items
-Build the page from this list, adapting names to the agent. The phases put the prompt work first, then the accounts a beginner has to create, then the platform, then the place people use it. Ids are suggestions; keep them stable once published.
+Build the page from this list, adapting names to the agent. The phases put the job description (prompt) and the playbook (skills) first, then the accounts a beginner has to create, then the platform, then the place people use it. Ids are suggestions; keep them stable once published.
 
 **Phase "define": Define the job (steps 1 to 6)**
 - `define-idea` (together): say the idea in your words; Claude restates it and proposes a name.
 - `define-receipt` (you): share one real example of the problem (a forwarded message, a post, a ticket). Question: who uses the output?
-- `define-contract` (claude): write what a good output looks like and what the agent must never do.
-- `define-approve` (you, say: "the contract looks right"): read the one-page summary Claude posts.
+- `define-contract` (claude): write the deliverable (contract), which is what a good output looks like, and what the agent must never do.
+- `define-approve` (you, say: "the contract looks right"): read the one-page summary Claude posts. Keep the phrase the builder says exactly as it is.
 
-**Phase "brain": Build the prompt and skills (steps 7 to 9)**
-- `brain-draft` (claude): write the system prompt, skills, and reference notes in plain files.
-- `brain-sources` (you): point Claude to the material the agent needs (a website, a spreadsheet export, past examples). Questions: where does it live, can Claude read it?
+**Phase "brain": Build the job description and the playbook (steps 7 to 9)**
+- `brain-draft` (claude): write the job description, the playbook, and reference notes in plain files.
+- `brain-sources` (you): point Claude to the material the binder (context pack) needs (a website, a spreadsheet export, past examples). Questions: where does it live, can Claude read it?
 - `brain-approve` (you, say: "approve the design"): read the design summary.
 
 **Phase "prove": Prove it on real examples (steps 10 to 12)**
 - `prove-examples` (you): send 3 to 10 real inputs, one at a time or all at once.
 - `prove-runs` (claude): run them by hand, try to break it, fix what breaks.
 - `prove-review` (together): read the scorecard and 2 sample outputs; say what's off.
-- `prove-gate` (claude): the eval gate, with the four numbers in the note.
+- `prove-gate` (claude): the ride along gate (evals), with the four numbers in the note.
 
 **Phase "accounts": Set up your accounts and keys (before step 14; mostly clicks)**
 - `acct-console` (you): create a Claude Console account and a workspace for agents. See `beginner-guide.md` W1.
@@ -83,7 +83,7 @@ Build the page from this list, adapting names to the agent. The phases put the p
 - `plat-package` (claude): package the files.
 - `plat-provision` (claude): create the agent, environment, memory, and vault. Dry run first; report what will change.
 - `plat-smoke` (claude): smoke test; note what answered.
-- `plat-eval` (claude): re-run the examples on the platform; cost and time per run in the note.
+- `plat-eval` (claude): re-run the ride along cases on the platform; cost and time per run in the note.
 - `plat-look` (you): open the Console and look at one session trace. W3.
 
 **Phase "surface": Put it where people work (step 17)**
@@ -104,8 +104,8 @@ Add these after the builder picks a surface (`surfaces.md`). A Slack surface usu
 
 Add a "Share" phase only when the builder wants others to use or build it (`sharing.md`):
 - `share-choose` (you): questions: host it, template it, bundle it, or several?
-- `share-generic` (claude): move organization facts out of the prompt and skills into a profile and memory seed templates; add placeholders.
-- `share-test` (claude): apply the template into an empty workspace and pass one eval case there.
+- `share-generic` (claude): move organization facts out of the job description and the playbook into the binder, a profile and memory seed templates; add placeholders.
+- `share-test` (claude): apply the template into an empty workspace and pass one ride along case there.
 - `share-readme` (claude): README and setup checklist for someone who doesn't code.
 - `share-approve` (you, say: "publish the template"): nothing goes public without it.
 
@@ -114,7 +114,7 @@ Add a "Share" phase only when the builder wants others to use or build it (`shar
 - `close-decide` (you): questions, one per skill: publish, keep private, or later (with Claude's recommendation in `hint`).
 - `close-twins` (claude): public versions, with the binding report and the confidentiality gate.
 - `close-go` (you, say: "publish the skills"): nothing goes public without it.
-- `close-site` (claude): push, put the cards on the site with the eval verdict behind the free unlock, link the article, posts, and `SETUP.md` to the page.
+- `close-site` (claude): push, put the cards on the site with the ride along verdict behind the free unlock, link the article, posts, and `SETUP.md` to the page.
 - `close-check` (together): open each card, try one install, and unlock once with your own email; Claude confirms the subscriber label.
 
 **Starting from an existing agent:** keep the same phases, and add to "define": `from-agent` (together): name the agent and version, and say what this team changes. Every build also gets `brain-setup-doc` (claude) in "brain": draft `SETUP.md` from the template.

@@ -15,7 +15,7 @@ Updated by the `ship-an-agent` skill at the end of every step. A resumed or fork
 - Secrets file: <path, names only>
 - Builder codes: yes | no (default no)
 - Surface helper: <none | code on Vercel/Cloudflare | n8n | Make | Zapier> (set at step 17)
-- Eval tier: 1 Prove (20) | 2 Share (40) | 3 Act (60)
+- Ride along tier (eval tier): 1 Prove (20) | 2 Share (40) | 3 Act (60)
 
 ## Progress
 | Step | Status | Gate evidence (one line) | Date |
@@ -24,18 +24,18 @@ Updated by the `ship-an-agent` skill at the end of every step. A resumed or fork
 | 2 Solution Spec | ○ | | |
 | 3 Tier | ○ | | |
 | 4 Name the job | ○ | | |
-| 5 Contract | ○ | | |
+| 5 The deliverable (contract) | ○ | | |
 | 6 The Split | ○ | | |
 | 7 Sort the brain | ○ | | |
 | 8 Map verbs to connections | ○ | | |
 | 9 Design files + approval | ○ | | |
 | 10 Prove by hand | ○ | | |
 | 11 Red team | ○ | | |
-| 12 Eval gate | ○ | | |
+| 12 Ride along gate | ○ | | |
 | 13 Package | ○ | | |
 | 14 Provision | ○ | | |
 | 15 Smoke test | ○ | | |
-| 16 Platform eval + metrics | ○ | | |
+| 16 Platform ride along + metrics | ○ | | |
 | 17 Surface | ○ | | |
 | 18 Chain | ○ | | |
 | 19 Owner + review | ○ | | |

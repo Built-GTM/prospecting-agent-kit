@@ -1,15 +1,17 @@
 # Ship a Solution, agent edition: the step-by-step
 
-The one process for taking an idea to a live, evaluated, published managed agent, plus the content it produces. It merges the repo standard `your own staging folder` (spec, the 8 agent steps, the four-number eval gate, bundle, article, posts, partner pack) with the Managed Agents deployment layer (design, package, provision, platform eval, operate).
+**The seven parts, and their technical names:** the job description (prompt), the onboarding binder (context pack), the playbook (skills), the keys (tools and connections), the deliverable (contract), the ride along (evals), the desk (deployment). The table and the frame behind them are in `SKILL.md`. Below, the plain name is used on its own.
 
-If this file and SHIP-A-SOLUTION disagree on the eval gate or the publishing stages, SHIP-A-SOLUTION wins. This file owns the Managed Agents steps.
+The one process for taking an idea to a live, evaluated, published managed agent, plus the content it produces. It merges the repo standard `your own staging folder` (spec, the 8 agent steps, the four-number ride along gate, bundle, article, posts, partner pack) with the Managed Agents deployment layer (design, package, provision, platform ride along, operate).
+
+If this file and SHIP-A-SOLUTION disagree on the ride along gate or the publishing stages, SHIP-A-SOLUTION wins. This file owns the Managed Agents steps.
 
 **How to run it:** use the `ship-an-agent` skill (`skills/ship-an-agent/`). It guides one step at a time and tracks progress in `<slug>/BUILD-STATE.md`. This file stays the source of truth for what each step is. When this file changes, re-copy it to the skill's `references/process.md` (the bundled copy for people without this folder).
 
 The principle: **the platform is the last mile.** Most of the work, and all of the risk, is settled in files before anything touches platform.claude.com.
 
 **Three rules from the first full builds (show-topic-scout and agent-coach, Sep 2026):**
-- **Every agent can be set up by someone else.** Builds start from an idea or from an existing agent on the same path; organization facts stay in a profile and memory seed; every agent ships a `SETUP.md` and bundles every skill needed to build it (`.claude/skills/`, including ship-an-agent) and to run it (`skills/`).
+- **Every agent can be set up by someone else.** Builds start from an idea or from an existing agent on the same path; organization facts stay in the binder, a profile and memory seed; every agent ships a `SETUP.md` and bundles every skill needed to build it (`.claude/skills/`, including ship-an-agent) and to run it (`skills/`).
 - **One live checklist from step 1.** A published page the builder and Claude both tick, with click-by-click steps for everything the builder does by hand (`.claude/skills/ship-an-agent/references/live-checklist.md`).
 - **Assume the builder doesn't code, and doesn't have Vercel.** Claude runs every command. The builder signs in, clicks, pastes into prepared lines, approves, and tests. The surface helper is picked from what they already use: code, n8n, Make, Zapier, or none (`references/beginner-guide.md`, `references/surfaces.md`).
 
@@ -17,9 +19,9 @@ The principle: **the platform is the last mile.** Most of the work, and all of t
 | Phase | Steps | The question it answers | Hard gate |
 |---|---|---|---|
 | **A. Define** | 1 to 6 | Is this a real problem, and is an agent the right answer? | A receipt exists. The output fits a checkable schema. |
-| **B. Design** | 7 to 9 | What goes in the prompt, skills, memory, and tools, and can it reach everything? | The owner approves the spec. No missing connection. |
-| **C. Prove** | 10 to 12 | Does it work on real inputs before any infrastructure exists? | Eval gate: four numbers, on a set sized to risk (20 / 40 / 60 cases) |
-| **D. Deploy** | 13 to 19 | Does the live agent match the proven one, and can people reach it? | Smoke test. Platform eval matches. A real task done. |
+| **B. Design** | 7 to 9 | What goes in the job description, the playbook, memory, and the keys, and can it reach everything? | The owner approves the spec. No missing connection. |
+| **C. Prove** | 10 to 12 | Does it work on real inputs before any infrastructure exists? | Ride along gate: four numbers, on a set sized to risk (20 / 40 / 60 cases) |
+| **D. Deploy** | 13 to 19 | Does the live agent match the proven one, and can people reach it? | Smoke test. The platform ride along matches. A real task done. |
 | **E. Publish** | 20 to 23 | Can others use it, and what did we learn worth telling? | Verdict visible everywhere. The owner's yes before anything goes public. |
 | **F. Operate** | 24 to 26 | Is it getting better without breaking? | Every change passes the gate |
 
@@ -36,7 +38,7 @@ Every step ends with a **Capture** note: what goes into the build log. That reco
 - **Capture:** the moment the idea came up, word for word. Any article or LinkedIn angle goes to the content inbox, `your own content inbox`.
 
 ### 2. Write the Solution Spec (SHIP Stage 0)
-- **Do:** Fill the fixed shape: Problem (the scar and its cost), Who has it, the Workflow (GIANT: Ground, Identify, Assign, Normalize, Tie back), Skills needed, Receipt, Eval bar.
+- **Do:** Fill the fixed shape: Problem (the scar and its cost), Who has it, the Workflow (GIANT: Ground, Identify, Assign, Normalize, Tie back), the playbook needed, Receipt, the ride along bar.
 - **Artifact:** section 1 of `agents/<slug>/spec.md`
 - **Gate:** the problem is specific and a receipt exists. If it's generic or has no receipt, stop.
 - **Capture:** the scar in one sentence. This becomes the article's opening.
@@ -53,9 +55,9 @@ Every step ends with a **Capture** note: what goes into the build log. That reco
 - **Gate:** if the output takes two lines to say, it's two agents. Split them.
 - **Capture:** the split you made, if any.
 
-### 5. Write the contract before the prompt (SHIP agent step 2)
-- **Do:** Run `agent-contract`. Input, output schema, must-always, must-never.
-- **Artifact:** contract section of the spec. It later becomes the outcome rubric and the eval schema.
+### 5. Write the deliverable before the job description (SHIP agent step 2)
+- **Do:** Run `agent-contract`. The deliverable is the input, the output schema, must-always, must-never.
+- **Artifact:** deliverable section of the spec. It later becomes the outcome rubric and the ride along schema.
 - **Gate:** **hard stop.** If the output can't be expressed as a checkable schema, it isn't ready to be an agent. Go back to step 2.
 - **Capture:** the must-nevers. They make the trust story.
 
@@ -67,14 +69,14 @@ Every step ends with a **Capture** note: what goes into the build log. That reco
 
 ## Phase B: Design
 
-### 7. Sort the brain: prompt, skills, memory, tools
-- **Do:** Apply the sorting rule in `agent-architect.md`. Judgment and hard rules go in the system prompt. Procedures go in skills. Facts that accumulate go in memory. One-run inputs are file resources. Anything touching the outside world is a tool or MCP server.
+### 7. Sort the brain: the job description, the playbook, memory, the keys
+- **Do:** Apply the sorting rule in `agent-architect.md`. Judgment and hard rules go in the job description. Procedures go in the playbook. Facts that accumulate go in memory. One-run inputs are file resources. Anything touching the outside world is one of the keys: a tool or an MCP server.
 - **Artifact:** spec sections 4 to 7
-- **Gate:** the prompt fits in about 2 pages. No user facts in skills. No procedures in memory. No organization facts (company, team, product, show names, their lists) in the prompt or skills: they go in a profile and memory seed, so anyone can set the agent up for their own team.
+- **Gate:** the job description fits in about 2 pages. No user facts in the playbook. No procedures in memory. No organization facts (company, team, product, show names, their lists) in the job description or the playbook: they go in the binder, a profile and memory seed, so anyone can set the agent up for their own team.
 - **Capture:** what went where and one decision that was hard.
 
 ### 8. Map every verb to a connection (the viability gate)
-- **Do:** Walk the jobs list clause by clause against `references/process.md` step 8. Each verb needs a tool, a credential (by name and your secrets file source), a reachable host, and its data.
+- **Do:** This is where the keys get named. Walk the jobs list clause by clause against `references/process.md` step 8. Each verb needs a tool, a credential (by name and your secrets file source), a reachable host, and its data.
 - **Artifact:** spec section 6, with blockers flagged
 - **Gate:** zero unflagged gaps. Blockers get resolved or cut from v1.
 - **Capture:** which connections were easy and which fought back.
@@ -87,10 +89,10 @@ Every step ends with a **Capture** note: what goes into the build log. That reco
 
 ## Phase C: Prove (still no platform)
 
-### 10. Run it by hand as skills (SHIP agent step 4)
-- **Do:** In Claude Code, load the skills and memory seed as local files and run the 10 real cases. Fix the prompt and skills here, where an iteration takes seconds.
-- **Artifact:** one folder per run in `evals/runs/<date>-<case>/`, the fix queue in `evals/findings.md`, and revised skills
-- **Gate:** the output is good on real inputs and the contract holds on every run.
+### 10. Run it by hand from the files (SHIP agent step 4)
+- **Do:** In Claude Code, load the playbook and memory seed as local files and run the 10 real cases. Fix the job description and the playbook here, where an iteration takes seconds.
+- **Artifact:** one folder per run in `evals/runs/<date>-<case>/`, the fix queue in `evals/findings.md`, and a revised playbook
+- **Gate:** the output is good on real inputs and the deliverable holds on every run.
 - **Capture:** what broke on the first run. That's the most honest paragraph in the article.
 
 ### 11. Red-team it (SHIP agent step 4, continued)
@@ -99,13 +101,13 @@ Every step ends with a **Capture** note: what goes into the build log. That reco
 - **Gate:** no must-never breach survives.
 - **Capture:** the best attack and the fix.
 
-### 12. Build the eval set and pass the gate (SHIP agent step 5, SHIP Stage 2)
-- **Do:** Run `eval-set-builder` and size the set to the risk (table below), keeping the SHIP band mix: 40% happy path, 25% messy, 20% edge, 10% adversarial, 5% abstain. Score the skill version. The set grows over time: every real production failure gets added as a new case.
-- **Artifact:** eval config plus the first verdict in `evals/`
+### 12. Build the ride along set and pass the gate (SHIP agent step 5, SHIP Stage 2)
+- **Do:** Run `eval-set-builder` and size the set to the risk (table below), keeping the SHIP band mix: 40% happy path, 25% messy, 20% edge, 10% adversarial, 5% abstain. Score the version you have been running by hand. The set grows over time: every real production failure gets added as a new case.
+- **Artifact:** ride along config plus the first verdict in `evals/`
 - **Gate:** **the four numbers:** zero must-never violations, 90%+ overall, no band under 75%, consistency 0.85+. A fail goes back to step 10.
 - **Capture:** all four numbers, the weakest band, and the set size.
 
-**Eval size by risk (decided 2026-09-14: 100 cases is too aggressive as a default):**
+**Ride along size by risk (decided 2026-09-14: 100 cases is too aggressive as a default):**
 | Risk tier | When | Cases (happy / messy / edge / adversarial / abstain) | Consistency runs | Overall bar |
 |---|---|---|---|---|
 | **1. Prove** | The builder is the only user and the agent is read-only or draft-only | **20** (8 / 5 / 4 / 2 / 1) | 3 | 90% |
@@ -117,7 +119,7 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 ## Phase D: Deploy (the Managed Agents layer)
 
 ### 13. Package in the deploy repo
-- **Do:** Copy the proven design into the repo layout (appendix A) on a branch. The system prompt goes into `agent.yaml`, skills sit under the agent, the eval set and seed files come along.
+- **Do:** Copy the proven design into the repo layout (appendix A) on a branch. The job description goes into `agent.yaml`, the playbook files sit under the agent, the ride along set and seed files come along.
 - **Artifact:** PR in the deploy repo
 - **Gate:** PR reviewed. No secret in any file (grep before pushing).
 - **Capture:** time from approved spec to PR.
@@ -127,7 +129,7 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 - **Do:** In order, because later steps use earlier ids:
   1. Upload skills (Skills API), record skill ids
   2. Create memory stores (shared read-only, per user) and seed them
-  3. Create the vault and add credentials from your secrets file without printing them. Capture MCP OAuth once.
+  3. Create the vault, where the keys live, and add credentials from your secrets file without printing them. Capture MCP OAuth once.
   4. Create or reuse the environment
   5. `ant beta:agents create < agent.yaml` (first time only; after that always `update`). Every later change starts with a dry run; edits made in the Console show up there and need the builder's call before an overwrite.
 - **Artifact:** `ids.json` (agent id + version, environment, stores, vault, skill ids)
@@ -139,8 +141,8 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 - **Gate:** every connection answers and memory mounts.
 - **Capture:** what failed on the first smoke test.
 
-### 16. Re-run the eval on the platform and capture metrics
-- **Do:** Run the same eval set as platform sessions, using an outcome rubric from the step 5 contract where it fits. Pull cost per task, tokens, and cache hit rate from session usage. For a migrated site route, run the old route on the same cases for the before number.
+### 16. Re-run the ride along on the platform and capture metrics
+- **Do:** Run the same ride along set as platform sessions, using an outcome rubric from the step 5 deliverable where it fits. Pull cost per task, tokens, and cache hit rate from session usage. For a migrated site route, run the old route on the same cases for the before number.
 - **Artifact:** platform scorecard in `_project/metrics/<slug>.md`
 - **Gate:** the four numbers pass again and hold up against the local verdict. For migrations: quality at least equal to the old route, with the cost difference explained.
 - **Capture:** before and after numbers. This is the headline.
@@ -151,7 +153,7 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 - **Capture:** the first real task and how it went.
 
 ### 18. Chain it, if it composes (SHIP agent step 7)
-- **Do:** Run `agent-seam` where this agent hands to or from another. Agents compose only where both sides have a contract.
+- **Do:** Run `agent-seam` where this agent hands to or from another. Agents compose only where both sides have a deliverable.
 - **Gate:** the handoff has a schema on both sides.
 - **Capture:** the seam and what it unlocks.
 
@@ -163,8 +165,8 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 ## Phase E: Publish (SHIP Stages 3 to 6)
 
 ### 20. Bundle and publish the tool (SHIP Stage 3)
-- **Before publishing:** verify it's shareable (`references/sharing.md`): pick host, template, or bundle; confirm no organization facts in the prompt or skills; read `SETUP.md` as a stranger; the template applies into an empty workspace and passes one eval case there.
-- **Do:** Write the playbook entry (problem, outcome, steps, WHY, PROOF, EPISODE_CHAT), the install plugin, and the ENABLEMENT entry. Put the cards on /tools, /school, /playbooks, and /builds if there is a real receipt, each showing its eval verdict. For a managed agent the "install" is its surface link. A skill-bundle version ships for people who live in Claude.
+- **Before publishing:** verify it's shareable (`references/sharing.md`): pick host, template, or bundle; confirm no organization facts in the job description or the playbook; read `SETUP.md` as a stranger; the template applies into an empty workspace and passes one ride along case there.
+- **Do:** Write the site's playbook entry (problem, outcome, steps, WHY, PROOF, EPISODE_CHAT). This is a page on the publishing site, not the agent's own playbook. Then the install plugin, and the ENABLEMENT entry. Put the cards on /tools, /school, /playbooks, and /builds if there is a real receipt, each showing its ride along verdict. For a managed agent the "install" is its surface link. A skill-bundle version ships for people who live in Claude.
 - **Gate:** pages render, install resolves, and the verdict is visible on every surface. **The owner's yes before anything goes public.**
 - **Capture:** links.
 
@@ -184,16 +186,16 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 ## Phase F: Operate and improve
 
 ### 24. Close the build: log it and publish the new skills
-- **Do:** Fill every build log field: time spent per phase, the four numbers, before and after metrics, lines of prompt code removed, what broke, content shipped. Then publish the new skills (`.claude/skills/ship-an-agent/references/publish-skills.md`): harvest every skill the build created or proved, the owner decides publish, private, or later for each, make the public twins through `builtgtm-skill-publisher` and its confidentiality gate, bundle them into a plugin, publish behind the free subscribe unlock with the eval verdict, and link the build's article and posts to the page.
+- **Do:** Fill every build log field: time spent per phase, the four numbers, before and after metrics, lines of hardcoded prompt removed, what broke, content shipped. Then publish the new skills (`.claude/skills/ship-an-agent/references/publish-skills.md`): harvest every skill the build created or proved, the owner decides publish, private, or later for each, make the public twins through `builtgtm-skill-publisher` and its confidentiality gate, bundle them into a plugin, publish behind the free subscribe unlock with the ride along verdict, and link the build's article and posts to the page.
 - **Gate:** the entry is complete before the session ends. Every published skill installs (200), shows its verdict, and a test unlock tags the subscriber; nothing public without the owner's yes.
 
 ### 25. Change through the gate
-- **Do:** Every change follows one path: edit in repo, PR, eval run, the owner approves, `ant beta:agents update`, which creates a new version. Rollback means pinning the previous version. A real production failure is added as case 101 and up, never as a new set.
-- **Gate:** no version ships without an eval run.
+- **Do:** Every change follows one path: edit in repo, PR, ride along run, the owner approves, `ant beta:agents update`, which creates a new version. Rollback means pinning the previous version. A real production failure is added as case 101 and up, never as a new set.
+- **Gate:** no version ships without a ride along run.
 - **Capture:** each version's change and score in the build log.
 
 ### 26. Let it improve, safely
-- **Do:** Sessions write lessons to memory. A scheduled evolution agent reads transcripts, memory, and scores, then proposes skill or prompt changes as a PR, which goes through step 25.
+- **Do:** Sessions write lessons to memory. A scheduled evolution agent reads transcripts, memory, and scores, then proposes playbook or job description changes as a PR, which goes through step 25.
 - **Gate:** no agent edits its own config or a read-only store (voice, positioning, ICP).
 - **Capture:** each accepted improvement and its score change. This is the "agents that get better" story.
 
@@ -225,8 +227,8 @@ The Console is for exploring, watching sessions, and capturing OAuth. The `ant` 
 | Phase | Claude Code | the owner |
 |---|---|---|
 | All | publishes and ticks the live checklist, writes click-by-click steps for every hand step | ticks their own steps, answers questions on the page |
-| A, B | drafts spec, contract, split, design files | names the scar, answers batched questions, approves the spec |
-| C | runs manual cases, red team, eval set | reviews the verdict |
+| A, B | drafts spec, deliverable, split, design files | names the scar, answers batched questions, approves the spec |
+| C | runs manual cases, red team, ride along set | reviews the verdict |
 | D | packages, provisions, smoke tests, measures, writes and deploys or exports the surface helper, checks every value the builder pastes | creates accounts and keys, pastes values into prepared lines, completes OAuth and Slack sign-in, runs the private test, uses it for a real task |
 | E | drafts bundle, article, posts, partner pack | approves anything that goes public |
 | F | writes the log, runs the change flow and evolution proposals | approves each version |
