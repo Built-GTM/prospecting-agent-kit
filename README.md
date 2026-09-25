@@ -40,7 +40,7 @@ my six context pack files into a new folder called my-pack/. Mark every field
 as found with a source, or inferred. Then ask me the five owner questions.
 ```
 
-The agent reads your website and drafts your pack. It marks what it found with a link and what it guessed, so you can see the difference. Then it asks you five questions only you can answer.
+The agent reads your website and drafts your onboarding binder (context pack). It marks what it found with a link and what it guessed, so you can see the difference. Then it asks you five questions only you can answer.
 
 ### 4. Fill in the gaps
 Answer the five questions. They take about twenty minutes and they are the difference between a brief that sounds like you and one that sounds like everyone else:
@@ -63,7 +63,7 @@ Then score it:
 python3 evals/check_brief.py <the file you saved the brief in>
 ```
 
-That script checks the brief 34 ways against the contract: every claim carries a link, the person was verified or flagged, no invented customers, no outreach copy, within the word caps. It has no opinion about your work.
+That script checks the brief 34 ways against the deliverable (contract): every claim carries a link, the person was verified or flagged, no invented customers, no outreach copy, within the word caps. It has no opinion about your work.
 
 ---
 
@@ -71,13 +71,13 @@ That script checks the brief 34 ways against the contract: every claim carries a
 | Folder | What it is |
 |---|---|
 | `SETUP.md` | The full walkthrough, written for someone who does not code |
-| `context-pack-template/` | The six blank files: company, icp, personas, problems, signals, proof |
-| `example-pack/` | A finished pack for a real company, built entirely from public pages. Read this first to see what good looks like |
-| `system-prompt.md` | The agent's instructions. Method only, no company facts, so it works for any company |
-| `skills/build-context-pack/` | Turns your website into a first draft of your pack |
-| `skills/four-whys-research/` | How to research each Why: which sources to trust, how to check a person is still in the role, when to stop |
-| `evals/check_brief.py` | The contract checker, 34 rules |
-| `skills/ship-an-agent/` | **The whole 26 step process**, from idea to a live agent: the contract, the split, the eval gate, the deploy, the handover. This is the method behind everything above |
+| `context-pack-template/` | The six blank binder files: company, icp, personas, problems, signals, proof |
+| `example-pack/` | A finished binder for a real company, built entirely from public pages. Read this first to see what good looks like |
+| `system-prompt.md` | The job description (prompt). Method only, no company facts, so it works for any company |
+| `skills/build-context-pack/` | Turns your website into a first draft of your binder |
+| `skills/four-whys-research/` | The playbook (skills) for each Why: which sources to trust, how to check a person is still in the role, when to stop |
+| `evals/check_brief.py` | The ride along (evals). The deliverable checker, 34 rules |
+| `skills/ship-an-agent/` | **The whole 26 step process**, from idea to a live agent: the deliverable, the split, the ride along, the desk (deployment), the handover. This is the method behind everything above |
 
 ## Building something other than a prospecting agent
 
@@ -88,7 +88,7 @@ Read skills/ship-an-agent/SKILL.md and walk me through building an agent
 that <the job you want done>.
 ```
 
-It will ask where your files should live, make you write the contract before the prompt, force real test cases before you call it done, and refuse to let you skip the eval gate. That is the point. `references/process.md` inside it is the full 26 steps if you would rather read than be walked.
+It will ask where your files should live, make you write the deliverable before the job description, force real test cases before you call it done, and refuse to let you skip the ride along. That is the point. `references/process.md` inside it is the full 26 steps if you would rather read than be walked.
 
 ## Using this with Codex, Grok, Cursor or anything else
 
@@ -101,31 +101,31 @@ It will ask where your files should live, make you write the contract before the
 | `system-prompt.md` | Yes. Paste it as the system prompt, custom instruction, or persona, whatever your tool calls it |
 | `evals/check_brief.py` | Yes. Plain Python 3, no dependencies. `python3 evals/check_brief.py <file>` |
 | `skills/*/SKILL.md` | The content is portable, the auto loading is not. Claude Code picks these up on its own. Everywhere else, paste the file's contents into the chat when you need that step |
-| Deploying as a managed agent | Claude specific. Codex and other platforms have their own hosted agents. The pack and the prompt move across unchanged; only the deploy screen differs |
+| Deploying as a managed agent | Claude specific. Codex and other platforms have their own hosted agents. The binder and the job description move across unchanged; only the deploy screen differs |
 
 ### Using this without file access
 If your tool cannot read a local folder, it only ever needs four things. Paste them in this order:
 
 1. `system-prompt.md` as the system prompt or custom instruction
-2. Your six pack files, as one message, each under a heading with its filename
+2. Your six binder files, as one message, each under a heading with its filename
 3. `skills/four-whys-research/SKILL.md` as a second message
 4. Then the company URL and the person's LinkedIn URL
 
-That is the whole agent. Everything else in this repo is there to help you build the pack and check the output.
+That is the whole agent. Everything else in this repo is there to help you build the binder and check the output.
 
 ### Building a different agent this way
 `skills/ship-an-agent/references/platforms.md` carries the same guidance for any agent build, not just this one: where to work, where to run it, what is portable and what is not.
 
 ### A note on skills
-A "skill" here is just a markdown file describing a procedure. Claude Code loads them automatically from `skills/`. Codex reads `AGENTS.md` at the root, which points at the same files. Any other tool: paste the one you need. The method does not change.
+A "skill" here is a playbook: a markdown file describing a procedure. Claude Code loads them automatically from `skills/`. Codex reads `AGENTS.md` at the root, which points at the same files. Any other tool: paste the one you need. The method does not change.
 
 ## The one idea worth stealing
-**Method in the agent, knowledge in the pack.** The prompt never mentions your company, so the day you change what you sell, or who you sell to, you edit six markdown files and nothing else. That is what lets one agent serve a whole team, and what stops you rebuilding it every quarter.
+**Method in the agent, knowledge in the binder.** The prompt never mentions your company, so the day you change what you sell, or who you sell to, you edit six markdown files and nothing else. That is what lets one agent serve a whole team, and what stops you rebuilding it every quarter.
 
 ## Two things deliberately left out
 **The research lookup script.** It points at a paid data route that needs its own credential. The agent works without it, on web search and page reading alone.
 
-**The eval case set.** It named real people at real companies who never agreed to be examples. Build your own instead: a few easy accounts, a few messy ones, some edge cases, a couple of deliberate attacks, and one where the right answer is to refuse. `check_brief.py` shows you the shape.
+**The ride along cases.** They named real people at real companies who never agreed to be examples. Build your own instead: a few easy accounts, a few messy ones, some edge cases, a couple of deliberate attacks, and one where the right answer is to refuse. `check_brief.py` shows you the shape.
 
 ## Where it came from
 Built live on Build Better, a Sell Better production, 23 September 2026. Almost none of the thinking is original: the signal types, the one level deeper check, the persona lens and the prompt structure all came from guests on the Daily Sales Show. The credits are in the deck.

@@ -1,6 +1,6 @@
 # ServiceTitan context pack
 
-The six files the agent reads to know who "us" is. Everything company specific lives here, so the same agent serves a different company by swapping this folder.
+A finished onboarding binder (context pack). These are the six files the agent reads to know who "us" is. Everything company specific lives here, so the same agent serves a different company by swapping this folder.
 
 ## What is in here
 | File | Holds |
@@ -15,7 +15,7 @@ The six files the agent reads to know who "us" is. Everything company specific l
 ## How fields are labelled
 Every field is marked **found** with the source link, or **inferred**. The agent treats them differently: a found fact can be stated, an inferred one is a hypothesis it says out loud. Nothing here is a guess pretending to be a fact.
 
-This pack was built from ServiceTitan's public pages and free web search. The fields an owner would answer from the inside, such as real deal size, the competitors they actually meet, and which customers reps may name beyond the public page, are marked inferred and are the first five things a real owner should correct.
+This binder was built from ServiceTitan's public pages and free web search. The fields an owner would answer from the inside, such as real deal size, the competitors they actually meet, and which customers reps may name beyond the public page, are marked inferred and are the first five things a real owner should correct.
 
 ## Two things verified live, not inferred
 - **The customer check.** `scheduler.servicetitan.com` and `static.servicetitan.com` load on a named customer's site, and a customer's own tenant sits at `<name>.myservicetitan.com`. A prospect site loading any of these is already a customer.

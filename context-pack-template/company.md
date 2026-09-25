@@ -4,7 +4,7 @@
 [What you sell, in one sentence a customer would recognise.]
 
 ## Our own domains, for the customer check
-A prospect's site that loads any of these is already running you. The agent stops and says so instead of pitching. **This is the highest value section in the pack.** Without it the agent will happily write a brief for an existing customer.
+A prospect's site that loads any of these is already running you. The agent stops and says so instead of pitching. **This is the highest value section in the onboarding binder (context pack).** Without it the agent will happily write a brief for an existing customer.
 
 | Domain | Where it shows up | Evidence |
 |---|---|---|

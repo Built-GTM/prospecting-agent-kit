@@ -5,7 +5,7 @@ description: 'Set up a team for the prospecting research agent. Given the team c
 
 # Build a context pack from a URL
 
-The URL is **the seller's own company**, not a prospect. The pack you build is what the research agent will know about "us."
+The URL is **the seller's own company**, not a prospect. The onboarding binder (context pack) you build is what the research agent will know about "us."
 
 The output is a draft. The owner approves it before it's loaded into the agent's memory, and until then nothing in it is true.
 
@@ -34,7 +34,7 @@ Then run two web searches: `"[company]" funding investors` and `"[company]" comp
 Stop at about 15 pages. More context isn't better context.
 
 ## 1b. Optional: enrich the named customers (a paid data waterfall)
-Do this only with the owner's yes to spend. It checks the biggest guess in most packs: how big and what kind the real customers are.
+Do this only with the owner's yes to spend. It checks the biggest guess in most binders: how big and what kind the real customers are.
 
 - **Input:** the seller's domain plus every customer named on its site. Resolve each customer's domain from its own website first.
 - **Run it as a waterfall.** Free rungs go first, and each paid rung runs only on the rows still missing data. Cap every paid call at one result.
@@ -47,11 +47,11 @@ Do this only with the owner's yes to spend. It checks the biggest guess in most 
 | 2 | Last try on misses | PDL enrich (charges only on a hit) | paid per hit |
 | 2 | Tech stack | Bloomberry, BuiltWith | paid per call |
 
-- **Save the results** to `context-packs/<slug>/enrichment/`, plus a `SUMMARY.md` with the rungs, the hits, the credits spent, and what changed in the pack.
+- **Save the results** to `context-packs/<slug>/enrichment/`, plus a `SUMMARY.md` with the rungs, the hits, the credits spent, and what changed in the binder.
 - **LinkedIn headcount undercounts** field-heavy businesses such as haulers, contractors, and restaurants. Label it as office staff.
 - **When sources disagree** (for example, on funding), record both and never state one as fact.
 - **A company every provider misses** is a finding, not a failure. Note it as a "tiny footprint" case.
-- **Add each fact to the pack as "(found: Deepline, `enrichment/SUMMARY.md`)",** then recheck the ICP size, the signal tiers, and the lookalike table.
+- **Add each fact to the binder as "(found: Deepline, `enrichment/SUMMARY.md`)",** then recheck the ICP size, the signal tiers, and the lookalike table.
 
 ## 2. Label every field
 - **(found: link):** read on a page you opened
@@ -95,5 +95,5 @@ Then ask one optional question: typical deal size and who signs.
 
 ## 6. Close it
 - Put the owner's answers into the files, and change each field's label to "(owner: confirmed <date>)."
-- The owner reads the pack and says yes. Record the date in the pack's `README.md`.
-- Only an approved pack goes into the agent's memory store. Reps never edit the live pack. Changes come back through the owner.
+- The owner reads the binder and says yes. Record the date in the binder's `README.md`.
+- Only an approved binder goes into the agent's memory store. Reps never edit the live binder. Changes come back through the owner.

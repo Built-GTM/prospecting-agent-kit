@@ -5,12 +5,12 @@ description: 'The research method behind every prospecting brief. Given a compan
 
 # The 4 Whys research method
 
-The method is the same for every team. What to search for comes from the context pack: `signals.md` holds the signals and their search recipes, and `icp.md`, `personas/`, `problems/` and `proof.md` hold the rest. If the pack and this skill ever disagree about *what* to look for, the pack wins. If they disagree about *how* to research or what counts as a source, this skill wins.
+This is the playbook (skills) for research. The method is the same for every team. What to search for comes from the onboarding binder (context pack): `signals.md` holds the signals and their search recipes, and `icp.md`, `personas/`, `problems/` and `proof.md` hold the rest. If the binder and this playbook ever disagree about *what* to look for, the binder wins. If they disagree about *how* to research or what counts as a source, this playbook wins.
 
 ## 0. Before you search
-- **Customer check first.** Read the company's site once and follow its order, quote, bill-pay, and portal links. The pack's own domain (`company.md`), or a company named as a customer in `proof.md`, means "Already a customer: <link>" and stop. Softer evidence that they may already run us, a job post asking for experience with our product for example, is a real signal and not a stop: the verdict is `CHECK FIRST` and *Check first* opens with "May already be a customer: [link]. Confirm in the CRM before you reach out." There is no CRM in your tools. The rep has one. Link the order button, or the pack's proof entry when that's the only evidence. A domain on the pack's known-vendor list (`signals.md`) is a competitor signal. Keep it for Why now. This runs even when the person is missing.
+- **Customer check first.** Read the company's site once and follow its order, quote, bill-pay, and portal links. The binder's own domain (`company.md`), or a company named as a customer in `proof.md`, means "Already a customer: <link>" and stop. Softer evidence that they may already run us, a job post asking for experience with our product for example, is a real signal and not a stop: the verdict is `CHECK FIRST` and *Check first* opens with "May already be a customer: [link]. Confirm in the CRM before you reach out." There is no CRM in your tools. The rep has one. Link the order button, or the binder's proof entry when that's the only evidence. A domain on the binder's known-vendor list (`signals.md`) is a competitor signal. Keep it for Why now. This runs even when the person is missing.
 - **You need a company and a person.** If the person is missing, ask for one in one line and stop. Don't research the company first, and don't suggest who to contact.
-- **Read the pack's `company.md`.** That defines "us."
+- **Read the binder's `company.md`.** That defines "us."
 - **Budget:** about 15 searches or page reads, plus research route calls (normally 2 to 4 per brief). Stop sooner once you have one good reason. A strong signal beats a dossier.
 - **If the research route says paid lookups are paused** (daily cap reached), keep going with free sources and note "paid lookups paused" under Couldn't verify. Never retry.
 
@@ -29,7 +29,7 @@ Never a source:
 Every claim in the brief gets a link. No link, no claim.
 
 ## Calling the research route
-Run it through the script in this skill, never with your own curl. It holds the credential in the Authorization header, tags the call with this agent and session, tallies the spend, and handles the cap:
+This is one of the agent's keys (tools and connections). Run it through the script in this playbook, never with your own curl. It holds the credential in the Authorization header, tags the call with this agent and session, tallies the spend, and handles the cap:
 
 ```
 bash /workspace/skills/four-whys-research/scripts/research_lookup.sh <tool> "<value>"
@@ -64,7 +64,7 @@ That is the full path in the sandbox, so there is no need to go looking for the 
 
 **Output:** Strong fit, Partial, or Caution.
 - A disqualifier never stops the brief. It becomes "Caution: [disqualifier], <source>. Worth checking before you reach out."
-- A Low-confidence ICP line in the pack means "check, don't conclude."
+- A Low-confidence ICP line in the binder means "check, don't conclude."
 
 ## 2. Why you (the person)
 The rep gives a LinkedIn profile URL. It's the anchor for who this person is. Never swap it for a name search.
@@ -101,7 +101,7 @@ Describing a conflict is not a substitute for the word.
    - intent: shows they're looking
    - absence: something that should be there and isn't
 3. **Run the "one level deeper" check** from `signals.md` for every signal you keep.
-4. **Check one absence signal** from the pack against their own site.
+4. **Check one absence signal** from the binder against their own site.
 5. **Stacking:** two or more signals that fit a stack in `signals.md` get one line telling the story together. Otherwise report the strongest signal.
 6. **Nothing inside the window:** write "No signal found" and move on. Never stretch an old event to fit, and never invent one.
 
@@ -109,14 +109,14 @@ Describing a conflict is not a substitute for the word.
 Use the mapping table in `signals.md` only. Write it with one of the two templates, word for word. If Why them is a Caution, start with "Low fit:" and don't claim ownership any more strongly than the template does.
 - **Signal found and mapped:** "Because of [signal], [person] likely owns [problem] right now." Use the table's persona and its primary problem.
 - **Signal found but not in the table:** report it as "unmapped signal" and write the problem-led Because instead.
-- **Nothing in the pack maps** (the company is outside the ICP, for example a different industry): write "Low fit: no problem in the pack maps to [company]." Don't stretch a problem to fit.
+- **Nothing in the binder maps** (the company is outside the ICP, for example a different industry): write "Low fit: no problem in the pack maps to [company]." Don't stretch a problem to fit.
 - **No signal:** write the problem-led Because. "Because [person] is a [persona] at a [ICP match], they likely own [problem]." Pick the problem from the persona's "Problems this persona feels most." Label it "problem-led, no trigger."
 
 ## 5. Why us (the proof)
 - **Pick one proof point** from `proof.md` that matches the problem from step 4. If several match, prefer one that also matches the persona, then one in the same line of business or size.
-- **Only name a customer** the pack says reps may name.
+- **Only name a customer** the binder says reps may name.
 - **Company claims** (numbers with no customer attached) are introduced as "[company] reports."
-- **Familiarity:** add it only if the pack or a source shows it (a lookalike customer, shared investors).
+- **Familiarity:** add it only if the binder or a source shows it (a lookalike customer, shared investors).
 
 ## 6. The decision, then the evidence
 Work out the four Whys first, then write the reply decision first:
@@ -138,7 +138,7 @@ Work out the four Whys first, then write the reply decision first:
 None of these is ever a sentence to the prospect.
 
 ## Before you reply
-Count the words in the Slack brief. Over 250, cut: the second signal, the second source per claim, and any sentence that repeats the pack rather than saying something about this prospect. The angle is one or two lines, never a paragraph.
+Count the words in the Slack brief. Over 250, cut: the second signal, the second source per claim, and any sentence that repeats the binder rather than saying something about this prospect. The angle is one or two lines, never a paragraph.
 
 ## Stop rules
 - Stop searching once Why them, Why you, and one Why now signal are sourced. Don't collect a second signal unless it stacks.
