@@ -6,6 +6,28 @@
 
 ---
 
+## First, how any of this works
+
+Read this even if you skim the rest. Everything below makes no sense without it.
+
+**Your Bot is a new hire who works in a different building.** It has its own computer, on its own desk, in a data centre somewhere. You will never touch that computer. There is no folder on your laptop, no file browser to open, no "New Folder" button.
+
+You get things done on that computer by **typing a sentence in the chat**. That is the only way, and it is the whole skill.
+
+So when this guide says "create a folder at `/workspace/pack/`", the action is: open the chat with your Bot and type
+
+```
+Create a folder at /workspace/pack/ and confirm it is empty.
+```
+
+The Bot does it and tells you it is done. Making folders, filing files, checking what is there, all of it is a sentence, never a click.
+
+`/workspace` is just the name of the main folder on the Bot's computer, the way `Documents` is the name of a folder on yours. xAI's own docs put it plainly: *"The computer has a shared workspace at `/workspace`. Ask Bots to keep durable project files there and use clear project folders."* **Ask** is the operative word.
+
+**You can watch.** Open **Agent Computer** from inside a conversation and you see the Bot's actual screen, live, while it works. You do not need it, but open it the first time you load the binder. Seeing the files appear beats trusting that they did.
+
+Nothing in this guide requires code, a terminal, or moving anything on your own machine.
+
 ## Before you start
 
 Fill the binder. `context-pack-template/` is scaffolding; nothing here works until your business is in it. Read `example-pack/` first to see the shape.
