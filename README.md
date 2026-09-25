@@ -78,6 +78,7 @@ That script checks the brief 34 ways against the deliverable (contract): every c
 | `skills/four-whys-research/` | The playbook (skills) for each Why: which sources to trust, how to check a person is still in the role, when to stop |
 | `evals/check_brief.py` | The ride along (evals). The deliverable checker, 34 rules |
 | `skills/ship-an-agent/` | **The whole 26 step process**, from idea to a live agent: the deliverable, the split, the ride along, the desk (deployment), the handover. This is the method behind everything above |
+| `deploy/` | One page per platform for the last step only: Claude, Grok Bot, OpenAI. Everything above this row is the same wherever you run it |
 
 ## Building something other than a prospecting agent
 
@@ -90,9 +91,9 @@ that <the job you want done>.
 
 It will ask where your files should live, make you write the deliverable before the job description, force real test cases before you call it done, and refuse to let you skip the ride along. That is the point. `references/process.md` inside it is the full 26 steps if you would rather read than be walked.
 
-## Using this with Codex, Grok, Cursor or anything else
+## Running it somewhere else: Codex, Grok, Cursor, anything
 
-**The kit is already tool agnostic.** Six markdown files, one system prompt, three skill files and a Python script. There is no vendor lock in the content. Only the wording of the old instructions assumed one app, and that is now fixed.
+**The kit is tool agnostic by design.** Markdown binder files, one system prompt, three skill files and a Python script. There is no vendor lock in the content.
 
 ### What is portable, and what is not
 | Piece | Portable? |
@@ -101,7 +102,21 @@ It will ask where your files should live, make you write the deliverable before 
 | `system-prompt.md` | Yes. Paste it as the system prompt, custom instruction, or persona, whatever your tool calls it |
 | `evals/check_brief.py` | Yes. Plain Python 3, no dependencies. `python3 evals/check_brief.py <file>` |
 | `skills/*/SKILL.md` | The content is portable, the auto loading is not. Claude Code picks these up on its own. Everywhere else, paste the file's contents into the chat when you need that step |
-| Deploying as a managed agent | Claude specific. Codex and other platforms have their own hosted agents. The binder and the job description move across unchanged; only the deploy screen differs |
+| Deploying it so it runs on a schedule | This is the only part that changes. See `deploy/` |
+
+### Deploying it, when you want it running on its own
+
+`deploy/` has one page per platform. Read the one you need and ignore the rest.
+
+| File | Platform |
+|---|---|
+| `deploy/claude.md` | Claude Managed Agents. The one the show was built on, and the only one here that has actually run |
+| `deploy/grok-bot.md` | xAI Grok Bot. Includes a paste ready block that builds the whole Bot in one go |
+| `deploy/codex.md` | OpenAI, which has three different answers depending on who you are |
+
+**There is no Grok binder, and there will not be one.** Here is the test: you change your ICP, how many files do you edit? With one binder, one. Fork it per platform and the answer is two, and the day you forget is the day one of your agents pitches a segment you stopped selling to.
+
+The binder is what the agent knows about your business. That is identical everywhere by definition. Only the deploy differs.
 
 ### Using this without file access
 If your tool cannot read a local folder, it only ever needs four things. Paste them in this order:
