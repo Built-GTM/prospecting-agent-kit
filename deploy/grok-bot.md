@@ -87,16 +87,50 @@ Two lines to check afterwards, because they are the ones that matter and the one
 
 ## Step 3. Put the binder on the computer
 
-Upload your seven binder files into `/workspace/pack/`, or connect the Drive or Notion folder and have the Bot sync them there.
+### What `/workspace` is, and what it is not
 
-Then confirm it can read them. Ask:
+`/workspace` is real. It is a folder on the Bot's persistent cloud computer, documented by xAI, and it is **shared and writable across every Bot on your account**. xAI's own guidance is to use project folders and descriptive names inside it.
+
+`/workspace/pack/` is **a folder you create.** It does not exist until you make it. It is the convention this kit uses so the anti jobs and the stop rule can name one fixed location, and you can call it something else as long as you change it in all four places the paste block mentions it.
+
+Create it first:
+
+```
+Create a folder at /workspace/pack/ and confirm it is empty.
+```
+
+### Getting the files in
+
+Drag them into the composer, or use the attachment control.
+
+**Six attachments at a time on desktop**, up to 25MB each for documents. Your binder is seven files or more once `personas/` and `problems/` have real content in them, so plan on two drops:
+
+- Drop one: `company.md`, `icp.md`, `signals.md`, `proof.md`
+- Drop two: your persona files and your problem files
+
+Ask it to file them as it goes:
+
+```
+Save these into /workspace/pack/, keeping the filenames exactly as they are.
+Persona files go in /workspace/pack/personas/, problem files in
+/workspace/pack/problems/. Do not edit the contents of any of them.
+```
+
+Do not zip them. xAI's docs note that large, encrypted, damaged or unusual files may not be readable, and a zip buys you nothing here.
+
+**The better route, if you have a connector.** Put the binder in a connected Drive or Notion folder and have the Bot sync it down. That keeps your source of truth outside the shared writable computer, which is the whole point of step 1, and it makes re-syncing before a run one sentence instead of two drops.
+
+### Verify it landed
+
+This is not optional. Run it:
 
 ```
 Read /workspace/pack/company.md and tell me, in one line each: what we sell,
 and every domain listed under "Our own domains".
+Then list every file you can see under /workspace/pack/.
 ```
 
-If it cannot list your domains, the stop rule will never fire and every brief after this is unsafe. Fix it before going on.
+If it cannot list your domains, the stop rule will never fire and every brief after this is unsafe. If a file is missing, the Why it names will be missing too. Fix both before going on.
 
 ## Step 4. Load the playbook
 
