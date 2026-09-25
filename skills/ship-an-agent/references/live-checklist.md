@@ -109,6 +109,25 @@ Add a "Share" phase only when the builder wants others to use or build it (`shar
 - `share-readme` (claude): README and setup checklist for someone who doesn't code.
 - `share-approve` (you, say: "publish the template"): nothing goes public without it.
 
+**Phase "ship": The four deliverables (step 20, every build, no exceptions)**
+Every agent hands the audience the same four. Ids are stable; never rename one.
+- `ship-claude` (claude): `deploy/claude.md`, the managed agent route.
+- `ship-codex` (claude): `deploy/codex.md`, covering all three OpenAI answers.
+- `ship-grokmd` (claude): `deploy/grok-bot.md`, build your own, with your own connections.
+- `ship-assume` (claude): run the assumed step question over all three. What does each instruction assume the reader already knows how to do?
+
+**Phase "bot": Build, test and publish the marketplace Bot (steps 20.1 to 20.5)**
+- `bot-block` (claude): write the build block, two modes, and `marketplace/<slug>.md` around it.
+- `bot-build` (you): paste the block into Dr Eggbot and answer its preference questions.
+- `bot-readback` (together): read the saved instructions back out; check the refusal rule and the read only rule survived.
+- `bot-binder` (you): load the binder files onto the Bot's computer.
+- `bot-verify` (together): the Bot lists every binder file and names every domain the stop rule depends on. **Nothing proceeds until it can.**
+- `bot-ride` (together): the case set on the live Bot, scored. Throwaway account: a test run here does real work.
+- `bot-drift` (claude): run it twice, compare the binder by size and timestamp. Any change means the read only rule is not holding.
+- `bot-approve` (you, say: "publish the bot"): nothing goes public without it.
+- `bot-link` (claude): the marketplace link into the kit README, `deploy/grok-bot.md`, and anywhere else that carries it.
+- `bot-installs` (you): check the install count a week later and tell Claude.
+
 **Phase "close": Publish the new skills (step 24, every build)**
 - `close-harvest` (claude): list every skill this build created or proved, with its proof.
 - `close-decide` (you): questions, one per skill: publish, keep private, or later (with Claude's recommendation in `hint`).

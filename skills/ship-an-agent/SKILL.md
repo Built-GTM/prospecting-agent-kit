@@ -28,6 +28,20 @@ You are not writing software, you are onboarding a rep. Every agent is made of t
 
 Use these names with the builder, and keep the technical name in parentheses the first time each one comes up in a file, then the plain name on its own.
 
+## The four deliverables
+Whatever the agent does, the people who receive it get the same four things. A build is not finished until all four exist.
+
+1. **Claude Code directions**, `deploy/claude.md`
+2. **Codex directions**, `deploy/codex.md`
+3. **Build your own Grok Bot**, `deploy/grok-bot.md`
+4. **The marketplace link**, a published Bot anyone can install
+
+Number 4 is the front door and the one most people take, so it gets built and tested like a product rather than a demo: steps 20.1 to 20.5 in the process doc, and the `bot` phase on the checklist. Numbers 1 to 3 are how someone graduates from the front door to a build of their own.
+
+**The onboarding binder is never one of the four.** It is the part that belongs to the person who installs it, so the published Bot writes them one on its first run instead of shipping ours. Say that out loud when someone asks why the agent is not handed over whole.
+
+One word, two meanings, and both stay. Part 5 above, **the deliverable (contract)**, is the shape of a single output. **The four deliverables** are the four things a finished build hands its audience. Keep the count attached when you mean these four, and the parenthetical when you mean part 5.
+
 ## Why guided, not autonomous
 Agents fail when people skip to the platform. The steps before the desk (the deliverable, the split, proving it by hand) are where bad agents get caught cheaply. A guide that runs ahead hides those decisions from the builder, and the builder is the one who has to own the agent afterward. So slow down at decisions, speed up at busywork, and never let a gate pass silently.
 
@@ -147,6 +161,7 @@ Some steps in the process doc were originally run with helper skills. **None of 
 | 14 to 17, any hand step | `references/beginner-guide.md`: Console and spend limit, API key, reading a session, GitHub, Slack app, webhook, private test, rollout |
 | 17, 19 | `references/surfaces.md`. Pick from what the builder already uses: code, n8n, Make, Zapier, or none |
 | 20 | `references/sharing.md`: host, template or bundle, the genericize checklist, the template layout |
+| 20.1 to 20.5 | The process doc's Bot steps, plus `marketplace/<slug>.md` in this kit as the worked example |
 | 24 | `references/publish-skills.md` |
 
 Steps 21 to 23 are content work, writing an article and posts about what you built. They are optional and depend on your own tooling.

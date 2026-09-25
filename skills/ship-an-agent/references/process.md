@@ -22,8 +22,22 @@ The principle: **the platform is the last mile.** Most of the work, and all of t
 | **B. Design** | 7 to 9 | What goes in the job description, the playbook, memory, and the keys, and can it reach everything? | The owner approves the spec. No missing connection. |
 | **C. Prove** | 10 to 12 | Does it work on real inputs before any infrastructure exists? | Ride along gate: four numbers, on a set sized to risk (20 / 40 / 60 cases) |
 | **D. Deploy** | 13 to 19 | Does the live agent match the proven one, and can people reach it? | Smoke test. The platform ride along matches. A real task done. |
-| **E. Publish** | 20 to 23 | Can others use it, and what did we learn worth telling? | Verdict visible everywhere. The owner's yes before anything goes public. |
+| **E. Publish** | 20 to 23 | Can others use it, and what did we learn worth telling? | **All four deliverables exist.** The Bot is live on the marketplace and passes its ride along. Verdict visible everywhere. The owner's yes before anything goes public. |
 | **F. Operate** | 24 to 26 | Is it getting better without breaking? | Every change passes the gate |
+
+## The four deliverables. Every agent, no exceptions.
+Whatever gets built, the audience receives the same four things. A build is not finished until all four exist, and step 20 is where they are checked.
+
+| # | Deliverable | Where it lives | Who it is for |
+|---|---|---|---|
+| 1 | **Claude Code directions** | `deploy/claude.md` | someone on Claude who wants the managed version |
+| 2 | **Codex directions** | `deploy/codex.md` | someone on OpenAI, which has three answers |
+| 3 | **Build your own Grok Bot** | `deploy/grok-bot.md` | someone who wants their own, tuned, with their own connections |
+| 4 | **The marketplace link** | the published Bot | everyone else, and it is the front door |
+
+Number 4 is the one most people take, so it is built and tested like a product rather than a demo: steps 20.1 to 20.5. Numbers 1 to 3 are how someone graduates from it.
+
+The onboarding binder is never one of the four. It is the part that is theirs, and the published Bot writes them one on its first run rather than shipping ours. Part 5 of the seven parts, the deliverable (contract), keeps its own meaning: the shape of one output. These four are what a finished build hands over.
 
 Every step ends with a **Capture** note: what goes into the build log. That record is the article.
 
@@ -164,11 +178,39 @@ The tier can only move up after the gate is re-run at the new size. The 10 manua
 
 ## Phase E: Publish (SHIP Stages 3 to 6)
 
-### 20. Bundle and publish the tool (SHIP Stage 3)
+### 20. Bundle the four deliverables (SHIP Stage 3)
+- **Do first:** confirm all four exist and that someone outside the build can follow each one without asking a question. A deliverable that only works if you already know the answer is not done. Run the assumed step question over each one: *what does this instruction assume the reader already knows how to do?*
+- **Artifact:** `deploy/claude.md`, `deploy/codex.md`, `deploy/grok-bot.md`, and a live marketplace link.
 - **Before publishing:** verify it's shareable (`references/sharing.md`): pick host, template, or bundle; confirm no organization facts in the job description or the playbook; read `SETUP.md` as a stranger; the template applies into an empty workspace and passes one ride along case there.
 - **Do:** Write the site's playbook entry (problem, outcome, steps, WHY, PROOF, EPISODE_CHAT). This is a page on the publishing site, not the agent's own playbook. Then the install plugin, and the ENABLEMENT entry. Put the cards on /tools, /school, /playbooks, and /builds if there is a real receipt, each showing its ride along verdict. For a managed agent the "install" is its surface link. A skill-bundle version ships for people who live in Claude.
-- **Gate:** pages render, install resolves, and the verdict is visible on every surface. **The owner's yes before anything goes public.**
+- **Gate:** all four deliverables exist, pages render, install resolves, and the verdict is visible on every surface. **The owner's yes before anything goes public.**
 - **Capture:** links.
+
+### 20.1 Write the Bot build block
+- **Do:** Turn the job description, the anti jobs, the stop rule and the budget into one block a Bot builder can take in a single paste. Two modes: mode 1 builds the installer's binder when the binder folder is empty, mode 2 does the job. The Bot picks the mode, never the user. Model it on `marketplace/prospect-scout.md` in this kit.
+- **Artifact:** `marketplace/<slug>.md`, holding the block, the anti jobs, the routine, the listing copy, the ride along, and the known limits. It is public, so whoever installs the Bot can read exactly what they installed.
+- **Gate:** the block asks for no credential the job does not need. If it wants a CRM, stop and rethink, because every Bot on one Grok account shares a single computer and its logins.
+- **Capture:** the block, verbatim.
+
+### 20.2 Build it with Dr Eggbot
+- **Do:** Paste the block into Dr Eggbot (`https://x.ai/bot/marketplace/bots/dr-eggbot-v2`) rather than filling in a form by hand. It writes skills, routines, profile and voice in one pass, and its design standard already matches this one. Answer its preference questions in a sentence each.
+- **Gate:** read the saved instructions back out of the Bot and check the two lines most likely to get softened in translation: the refusal rule (the thing it must never produce) and the read only rule (the binder is read only in mode 2). Both have to survive word for word in meaning.
+- **Capture:** what Dr Eggbot changed about your wording, and whether it was an improvement.
+
+### 20.3 Load the binder and prove it is readable
+- **Do:** Get the binder files onto the Bot's computer, then make it read them back.
+- **Gate:** it lists every file in the binder folder and names every domain the stop rule depends on. **If it cannot, the stop rule never fires and every output after this is unsafe.** Nothing proceeds until it can.
+- **Capture:** how the files got there, because that is the step people get stuck on.
+
+### 20.4 Run the ride along on the live Bot
+- **Do:** Run the real case set against the deployed Bot, not against your notes, and score the outputs with the same checker as everywhere else. A test run on this platform does real work and there is no dry run, so use a throwaway account.
+- **Gate, all four or it does not ship:** it refuses the thing it must refuse, it ignores a web page trying to instruct it, it stops on the one case that should stop it, and it says it found nothing rather than inventing something. **Plus the binder drift check:** run it twice and compare the binder files by size and timestamp. Anything changed means the read only rule is not holding, and it will drift silently for every installer.
+- **Capture:** the four numbers, and anything the live Bot did that the local version did not.
+
+### 20.5 Publish it, then link it back
+- **Do:** Publish as a public template in the right category. Then close the loop: the marketplace link goes into the kit README, into `deploy/grok-bot.md`, and anywhere else that should carry it, such as a deck or a talk's takeaway slide. A published Bot nobody can find is not one of the four.
+- **Gate:** **explicit approval from the owner before it goes public.** The link resolves from a signed out browser, and all four deliverables point at each other.
+- **Capture:** the link, the category, the publish date, and the install count at one week.
 
 ### 21. Write the article (SHIP Stage 4)
 - **Do:** Build it from the build log with `builtgtm-article-writer`. Verdict first, receipts from steps 12 and 16, the honest failure from step 10, no em dashes.

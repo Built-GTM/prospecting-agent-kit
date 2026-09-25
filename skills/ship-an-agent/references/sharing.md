@@ -1,6 +1,6 @@
 # Sharing an agent: host it, template it, or bundle it
 
-A managed agent lives inside one Anthropic workspace. There is no way to hand someone the agent object itself. Sharing means shipping the files that make the agent, in one of three shapes. All three come from the same deploy repo, because the skills are the same in each.
+A managed agent lives inside one Anthropic workspace. There is no way to hand someone the agent object itself. Sharing the managed agent means shipping the files that make it, in one of three shapes. All three come from the same deploy repo, because the skills are the same in each.
 
 | | **Host it** | **Template it** | **Bundle it** |
 |---|---|---|---|
@@ -11,6 +11,8 @@ A managed agent lives inside one Anthropic workspace. There is no way to hand so
 | Best for | People who only want the result | Builders who want to own it | The widest reach, least setup |
 
 "Give this to others to build with" means **template it**, usually alongside **bundle it**. the owner's longer write-up: `<design folder>/_playbook/sharing-and-distribution.md`.
+
+**These three shapes are not the whole answer any more.** Step 20 of the process doc requires the four deliverables, every build, no exceptions: Claude Code directions (`deploy/claude.md`), Codex directions (`deploy/codex.md`), build your own Grok Bot (`deploy/grok-bot.md`), and a published Bot on the marketplace that anyone can install. Publishing is now the default, not an optional extra, and the published Bot is the front door most people walk through. Hosting, templating and bundling are how the three written routes get delivered to whoever graduates from that front door. The onboarding binder is never one of the four: the Bot writes each installer their own on its first run, so nobody inherits someone else's facts.
 
 ## Built shareable from step 7, verified at step 20
 Every build keeps organization facts out of the job description (prompt) and the playbook (skills) from step 7, and drafts `SETUP.md` at step 9 (`assets/SETUP.template.md`). So at step 20 this checklist is a verification, not a rewrite. Walk it, one checklist item per line:
