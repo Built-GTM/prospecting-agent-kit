@@ -9,13 +9,13 @@ Give it a company URL and one LinkedIn profile. It hands back why that person sh
 ## Two ways in. Pick one.
 
 ### Install the Bot, about 30 minutes, nothing to download
-**[prospect scout on the Grok Bot Marketplace](PASTE MARKETPLACE LINK)**
+**prospect scout, on the Grok Bot Marketplace. Not published yet.**
 
-Click Add. On its first run it reads your website, asks you five questions nobody else can answer, and writes your onboarding binder (context pack) for you. After that it runs briefs. Once a month it asks whether your binder has gone stale.
+On its first run it reads your website, asks you five questions nobody else can answer, and writes your onboarding binder (context pack) for you. After that it runs briefs. Once a month it asks whether your binder has gone stale.
 
-Everything inside it is in this repo: the exact build block, the anti jobs and the listing are in [`marketplace/prospect-scout.md`](marketplace/prospect-scout.md). Nothing is hidden from you.
+It is not on the marketplace yet, and this line will carry the link the day it is. In the meantime [`marketplace/prospect-scout.md`](marketplace/prospect-scout.md) holds the whole thing: the exact block you paste into a Bot builder, the ten anti jobs, the monthly routine and the listing. You can build it yourself from that file today, and `deploy/grok-bot.md` walks you through it.
 
-Pick this if you want it working today.
+Nothing about it is hidden from you, including that it is not live yet.
 
 ### Build your own, about 10 minutes to start
 Everything below. You get the same method with your own model, your own connections, your own tools, and the agent running wherever you want it: Claude, ChatGPT, Codex, your own code.
